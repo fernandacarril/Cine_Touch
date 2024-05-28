@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21" fx:controller="br.com.fatec.controller.LoginAdmController">
+    <stylesheets>
+        <URL value="@/br/com/fatec/css/loginadm.css" />
+    </stylesheets>
+   <children>
+      <ImageView fx:id="imgLogo" fitHeight="239.0" fitWidth="412.0" layoutX="-35.0" layoutY="84.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/imgLogo.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="lblLogin" layoutX="402.0" layoutY="22.0" text="Login">
+         <font>
+            <Font size="26.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblAdm" layoutX="332.0" layoutY="60.0" text="ADMINISTRADOR">
+         <font>
+            <Font size="26.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblUsuario" layoutX="315.0" layoutY="120.0" text="Usuário">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtUsuario" layoutX="315.0" layoutY="152.0" prefHeight="38.0" prefWidth="255.0" />
+      <Label fx:id="lblSenha" layoutX="315.0" layoutY="200.0" text="Senha">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtSenha" layoutX="315.0" layoutY="232.0" prefHeight="38.0" prefWidth="255.0" />
+      <CheckBox fx:id="ckSenha" layoutX="316.0" layoutY="283.0" mnemonicParsing="false" text="Exibir Senha" />
+      <Button fx:id="btnConfirmar" layoutX="316.0" layoutY="334.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="115.0" text="Confirmar">
+         <padding>
+            <Insets bottom="10.0" top="10.0" />
+         </padding>
+      </Button>
+      <Button fx:id="btnVoltar" layoutX="454.0" layoutY="334.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="38.0" prefWidth="115.0" text="Voltar">
+         <padding>
+            <Insets bottom="10.0" top="10.0" />
+         </padding>
+      </Button>
+   </children>
+</AnchorPane>
