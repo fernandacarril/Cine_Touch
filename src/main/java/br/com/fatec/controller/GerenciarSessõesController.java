@@ -5,52 +5,56 @@
 package br.com.fatec.controller;
 
 import java.net.URL;
-import javafx.fxml.FXML;
 import java.util.ResourceBundle;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.image.ImageView;
 
 /**
  * FXML Controller class
  *
  * @author Fernanda
  */
-public class LoginAdmController implements Initializable {
-    
+public class GerenciarSessõesController implements Initializable {
+
     @FXML
-    private TextField txtUsuario;
-    
+    private Label lblTitulo;
     @FXML
-    private PasswordField pwSenha;
-    
+    private Label lblSessao;
     @FXML
-    private CheckBox ckSenha;
-    
+    private TextField txtId;
     @FXML
-    private Button btnConfirmar;
-    
+    private Label lblFilme;
+    @FXML
+    private TextField txtIdFilme;
+    @FXML
+    private ComboBox<?> cbFilme;
+    @FXML
+    private Label lblSala;
+    @FXML
+    private TextField txtSala;
+    @FXML
+    private Label lblDataI;
+    @FXML
+    private DatePicker dtDataI;
+    @FXML
+    private Label lblHorario;
+    @FXML
+    private Label lblDataF;
+    @FXML
+    private DatePicker dtDataF;
+    @FXML
+    private ComboBox<?> cbHorario;
+    @FXML
+    private Button btnGravar;
+    @FXML
+    private Button btnExcluir;
     @FXML
     private Button btnVoltar;
-    
-    @FXML
-    private ImageView imgLogo;
-    
-    @FXML
-    private Label lblLogin;
-    
-    @FXML
-    private Label lblAdm;
-    
-    @FXML
-    private Label lblUsuario;
-    
-    @FXML
-    private Label lblSenha;
 
     /**
      * Initializes the controller class.

@@ -4,36 +4,21 @@
  */
 package br.com.fatec.controller;
 
-
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.image.ImageView;
-
+import javafx.scene.control.ListView;
 
 /**
  * FXML Controller class
  *
  * @author Fernanda
  */
-public class TelaInicialController implements Initializable {
+public class TelaAdmController implements Initializable {
 
     @FXML
-    private Button btnIniciar;
-    @FXML
-    private Label lblFernanda;
-    @FXML
-    private ImageView imgLogo;
-    @FXML
-    private Label lblFernando;
-    @FXML
-    private Button btnAdmin;
-
-
+    private ListView lvMenu;
 
     /**
      * Initializes the controller class.
@@ -42,9 +27,5 @@ public class TelaInicialController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
-
-    @FXML
-    private void btnAdmin_Click(ActionEvent event) {
-        
-    }
+    
 }

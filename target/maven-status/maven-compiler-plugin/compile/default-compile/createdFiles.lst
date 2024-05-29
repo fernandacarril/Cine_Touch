@@ -1,2 +1,3 @@
 br\com\fatec\App.class
 br\com\fatec\controller\TelaInicialController.class
+br\com\fatec\controller\LoginAdmController.class
