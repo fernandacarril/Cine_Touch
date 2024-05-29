@@ -6,7 +6,10 @@ package br.com.fatec.controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
+import javafx.scene.control.TableView;
 
 /**
  * FXML Controller class
@@ -14,6 +17,11 @@ import javafx.fxml.Initializable;
  * @author Fernanda
  */
 public class VisualizarSessoesController implements Initializable {
+
+    @FXML
+    private TableView<?> tvSessoes;
+    @FXML
+    private Label lblTitulo;
 
     /**
      * Initializes the controller class.
