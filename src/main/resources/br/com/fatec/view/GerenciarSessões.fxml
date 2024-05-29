@@ -74,6 +74,7 @@
          <children>
             <Button fx:id="btnGravar" maxHeight="60.0" mnemonicParsing="false" prefWidth="180.0" text="Gravar" />
             <Button fx:id="btnExcluir" maxHeight="60.0" mnemonicParsing="false" prefWidth="180.0" text="Excluir" />
+            <Button fx:id="btnExcluir1" maxHeight="60.0" mnemonicParsing="false" prefWidth="180.0" text="Visualizar Sessões" />
             <Button fx:id="btnVoltar" maxHeight="60.0" mnemonicParsing="false" prefWidth="180.0" text="Voltar" />
          </children>
          <padding>
