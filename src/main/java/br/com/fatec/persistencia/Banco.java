@@ -22,7 +22,7 @@ public class Banco {
     
     //define valores padrão
     static {
-        bancoDados = "Loja";
+        bancoDados = "Cinema";
         usuario = "root";
         senha = "";
         servidor = "localhost";

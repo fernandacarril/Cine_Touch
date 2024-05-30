@@ -43,7 +43,7 @@ public class GerenciarFilmeController implements Initializable {
     @FXML
     private ComboBox<?> cbClass;
     @FXML
-    private ComboBox<?> cbFilme;
+    private ComboBox<> cbFilme;
     @FXML
     private TextField txtAtores;
     @FXML
@@ -57,6 +57,7 @@ public class GerenciarFilmeController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+
     }    
     
 }
