@@ -43,7 +43,7 @@ public class GerenciarFilmeController implements Initializable {
     @FXML
     private ComboBox<?> cbClass;
     @FXML
-    private ComboBox<> cbFilme;
+    private ComboBox<Filme> cbFilme;
     @FXML
     private TextField txtAtores;
     @FXML

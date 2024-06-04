@@ -10,7 +10,7 @@ package br.com.fatec.model;
  */
 public class Sala {
     private int numeroSala;
-    private String tipoSala;
+    private int tipoSala;
     private int capacidade;
     private Poltrona poltronas;
     
@@ -41,7 +41,7 @@ public class Sala {
     }
     
     
-    public Sala(int numeroSala, String tipoSala, int capacidade, Poltrona poltronas) {
+    public Sala(int numeroSala, int tipoSala, int capacidade, Poltrona poltronas) {
         this.numeroSala = numeroSala;
         this.tipoSala = tipoSala;
         this.capacidade = capacidade;
@@ -57,11 +57,11 @@ public class Sala {
         this.numeroSala = numeroSala;
     }
 
-    public String getTipoSala() {
+    public int getTipoSala() {
         return tipoSala;
     }
 
-    public void setTipoSala(String tipoSala) {
+    public void setTipoSala(int tipoSala) {
         this.tipoSala = tipoSala;
     }
 

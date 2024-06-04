@@ -10,8 +10,9 @@ package br.com.fatec.model;
  */
 public class Filme {
     private int idFilme;
-    private String nomeFilme, duracao, classificacao, sinopse;
+    private String nomeFilme, duracao, sinopse;
     private String genero;
+    private String classificacao;
 
     @Override
     public String toString() {
