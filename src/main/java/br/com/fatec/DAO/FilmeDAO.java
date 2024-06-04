@@ -41,7 +41,7 @@ public class FilmeDAO implements DAO <Filme> {
         //substitui as '?' por dados
         pst.setString(1, model.getNomeFilme());
         pst.setString(2, model.getDuracao());
-        pst.setInt(3, model.getClassificacao());
+        pst.setString(3, model.getClassificacao());
         pst.setString(4, model.getSinopse());
         pst.setString(5, model.getGenero());
                 
@@ -96,7 +96,7 @@ public class FilmeDAO implements DAO <Filme> {
         //substitui as '?' por dados
         pst.setString(1, model.getNomeFilme());
         pst.setString(2, model.getDuracao());
-        pst.setInt(3, model.getClassificacao());
+        pst.setString(3, model.getClassificacao());
         pst.setString(4, model.getSinopse());
         pst.setString(5, model.getGenero());
         //executa o comando
@@ -133,11 +133,11 @@ public class FilmeDAO implements DAO <Filme> {
             
             
             //cria o objeto veiculo
-            filme = new Filme(f);
+            filme = new Filme();
             //move os dados do resultSet para o objeto veiculo
             filme.setNomeFilme(rs.getString("nomeFilme"));
             filme.setDuracao(rs.getString("duracao"));
-            filme.setClassificacao(rs.getInt("classificacao"));
+            filme.setClassificacao(rs.getString("classificacao"));
             filme.setSinopse(rs.getString("sinopse"));
             filme.setClassificacao(rs.getString("genero"));
         }
@@ -173,11 +173,11 @@ public class FilmeDAO implements DAO <Filme> {
         while(rs.next()) { //achou 1 registro
 
             //cria o objeto veiculo
-            filme = new Filme(f);
+            filme = new Filme();
             //move os dados do resultSet para o objeto veiculo
             filme.setNomeFilme(rs.getString("nomeFilme"));
             filme.setDuracao(rs.getString("duracao"));
-            filme.setClassificacao(rs.getInt("classificacao"));
+            filme.setClassificacao(rs.getString("classificacao"));
             filme.setSinopse(rs.getString("sinopse"));
             filme.setClassificacao(rs.getString("genero"));
             

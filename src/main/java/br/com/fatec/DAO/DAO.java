@@ -11,7 +11,7 @@ import java.util.Collection;
  *
  * @author Fernanda
  */
-public interface DAO {
+public interface DAO <T> {
     public boolean insere(T model) throws SQLException;
     public boolean remove(T model) throws SQLException;
     public boolean altera(T model) throws SQLException;

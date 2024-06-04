@@ -4,6 +4,7 @@
  */
 package br.com.fatec.controller;
 
+import br.com.fatec.model.Filme;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
