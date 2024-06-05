@@ -6,6 +6,7 @@ package br.com.fatec.controller;
 
 import br.com.fatec.DAO.AdministradorDAO;
 import br.com.fatec.model.Administrador;
+import br.com.fatec.model.Sessoes;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -100,8 +101,9 @@ public class LoginAdmController implements Initializable {
                 // Autenticação bem-sucedida, faça o que desejar aqui
                 // Por exemplo, redirecione para a próxima tela
                 mensagem("Login bem-sucedido!");
+                Sessoes sessoes = new Sessoes();
                 
-                
+               
                 // Código para redirecionar para a próxima tela...
             } else {
                 // Autenticação falhou, exiba uma mensagem de erro

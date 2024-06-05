@@ -1,7 +1,5 @@
 br\com\fatec\controller\TelaAdmController.class
 br\com\fatec\model\Poltrona.class
-br\com\fatec\controller\LoginAdmController.class
-br\com\fatec\controller\GerenciarSessõesController.class
 br\com\fatec\model\Sala.class
 br\com\fatec\model\Administrador.class
 br\com\fatec\DAO\DAO.class
