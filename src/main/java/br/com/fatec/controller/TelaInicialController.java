@@ -47,4 +47,8 @@ public class TelaInicialController implements Initializable {
     private void btnAdmin_Click(ActionEvent event) {
         
     }
+
+    @FXML
+    private void btnIniciar_Click(ActionEvent event) {
+    }
 }
