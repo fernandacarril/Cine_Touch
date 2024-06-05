@@ -6,6 +6,8 @@ package br.com.fatec.controller;
 
 
 import br.com.fatec.model.Administrador;
+import br.com.fatec.model.Cliente;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -53,8 +55,10 @@ public class TelaInicialController implements Initializable {
     }
 
     @FXML
-    private void btnIniciar_Click(ActionEvent event) {
-        System.out.println("btn cliente");
+    private void btnIniciar_Click(ActionEvent event) throws IOException {
+        System.out.println("btn ADM");
+        Cliente cliente = new Cliente("cpf",2);
+        cliente.start(new Stage());
 
     }
 }

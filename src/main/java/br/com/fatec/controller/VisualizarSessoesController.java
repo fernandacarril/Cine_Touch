@@ -17,9 +17,18 @@ import javafx.scene.control.TableView;
  * @author Fernanda
  */
 public class VisualizarSessoesController implements Initializable {
+    private String dadoPassado;
+
+    public String getDadoPassado() {
+        return dadoPassado;
+    }
+
+
+
 
     @FXML
     private TableView<?> tvSessoes;
+
     @FXML
     private Label lblTitulo;
 
@@ -30,5 +39,9 @@ public class VisualizarSessoesController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
+
+    public void setDadoPassado(String funcionou) {
+
+    }
     
 }
