@@ -5,7 +5,7 @@
 package br.com.fatec.model;
 
 import br.com.fatec.App;
-import br.com.fatec.controller.TelaAdmController;
+import br.com.fatec.controller.LoginAdmController;
 import java.io.IOException;
 import java.util.Objects;
 import javafx.fxml.FXMLLoader;
@@ -36,9 +36,9 @@ public class Administrador extends Usuario  {
     public void start(Stage tela) throws IOException {
         setStage(tela);
         
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("view/TelaAdm.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("view/LoginAdm.fxml"));
         Parent root = fxmlLoader.load();
-        TelaAdmController controler = fxmlLoader.getController();
+        LoginAdmController controler = fxmlLoader.getController();
         controler.setDadoPassado("Funcionou");
 
         Scene scene = new Scene(root, 640, 480);

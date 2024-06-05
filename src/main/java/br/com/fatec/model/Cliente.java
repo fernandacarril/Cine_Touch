@@ -26,10 +26,11 @@ public class Cliente extends Usuario {
         this.cpf = cpf;
     }
 
+    public Cliente(int idUsuario) {
+        super(idUsuario);
+    }
+
  
-
-
-    
     
       public void start(Stage tela) throws IOException {
         setStage(tela);

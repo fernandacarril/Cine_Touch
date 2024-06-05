@@ -38,7 +38,5 @@ public class TelaAdmController implements Initializable {
         // TODO
     }    
     
-    public void mudaBotao(){
-        
-    }
+ 
 }

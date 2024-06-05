@@ -1,5 +1,5 @@
-drop database Cinema;
-create database Cinema;
+DROP DATABASE IF EXISTS Cinema;
+CREATE DATABASE Cinema;
 
 use Cinema;
 

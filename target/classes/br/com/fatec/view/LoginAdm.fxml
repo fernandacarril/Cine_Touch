@@ -44,12 +44,12 @@
          </font>
       </Label>
       <CheckBox fx:id="ckSenha" layoutX="316.0" layoutY="283.0" mnemonicParsing="false" text="Exibir Senha" />
-      <Button fx:id="btnConfirmar" layoutX="316.0" layoutY="334.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="115.0" text="Confirmar">
+      <Button fx:id="btnConfirmar" layoutX="316.0" layoutY="334.0" mnemonicParsing="false" onAction="#btnConfirmar_Click" prefHeight="38.0" prefWidth="115.0" text="Confirmar">
          <padding>
             <Insets bottom="10.0" top="10.0" />
          </padding>
       </Button>
-      <Button fx:id="btnVoltar" layoutX="454.0" layoutY="334.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="38.0" prefWidth="115.0" text="Voltar">
+      <Button fx:id="btnVoltar" layoutX="454.0" layoutY="334.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#btnVoltar_Click" prefHeight="38.0" prefWidth="115.0" text="Voltar">
          <padding>
             <Insets bottom="10.0" top="10.0" />
          </padding>

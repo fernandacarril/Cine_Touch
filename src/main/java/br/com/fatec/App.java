@@ -1,5 +1,7 @@
 package br.com.fatec;
 
+import br.com.fatec.DAO.FilmeDAO;
+import br.com.fatec.persistencia.Banco;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -7,12 +9,13 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 /**
  * JavaFX App
  */
 public class App extends Application {
-
+    
     private static Scene scene;
     private static Stage stage; 
 
@@ -22,6 +25,7 @@ public class App extends Application {
         this.stage = stage;
         stage.setScene(scene);
         stage.show();
+        testebanco();
     }
 
     static void setRoot(String fxml) throws IOException {
@@ -37,8 +41,23 @@ public class App extends Application {
         stage.close();
     }
 
-    public static void main(String[] args) {
-        launch();
+//Criando chamada no banco de dados
+  
+    public void testebanco(){
+        try {
+            Banco.conectar();
+            System.out.println("Conectado com Sucesso!!!");
+            
+            System.out.println("Testando Banco!!!");         
+            
+            System.out.println("Fechando...");
+            Banco.desconectar();
+            System.out.println("Fechado...");
+        } catch (SQLException ex) {
+            System.out.println("Erro: " + ex.getMessage());
+        }
+    
     }
 
+   
 }
