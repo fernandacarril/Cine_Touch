@@ -4,15 +4,55 @@
  */
 package br.com.fatec.model;
 
+import br.com.fatec.App;
+import br.com.fatec.controller.TelaAdmController;
+import java.io.IOException;
 import java.util.Objects;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
 /**
  *
  * @author Fernanda
  */
-public class Administrador extends Usuario {
+public class Administrador extends Usuario  {
     private String login, senha;
+    public static Stage tela;
 
+    public Administrador(int idUsuario) {
+        super(idUsuario);
+    }
+
+    public Administrador(String login, int idUsuario) {
+        super(idUsuario);
+        this.login = login;
+    }
+
+   
+   
+
+    public void start(Stage tela) throws IOException {
+        setStage(tela);
+        
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("view/TelaAdm.fxml"));
+        Parent root = fxmlLoader.load();
+        TelaAdmController controler = fxmlLoader.getController();
+        controler.setDadoPassado("Funcionou");
+
+        Scene scene = new Scene(root, 640, 480);
+        
+        tela.setScene(scene);
+        tela.show();        
+
+    }
+   
+    
+    public static void setStage(Stage t) {
+        tela = t;
+    }
+    
     @Override
     public String toString() {
         return getLogin();
@@ -66,7 +106,5 @@ public class Administrador extends Usuario {
     public void setSenha(String senha) {
         this.senha = senha;
     }
-
-   
-    
-}
+ 
+}   

@@ -5,6 +5,7 @@
 package br.com.fatec.controller;
 
 
+import br.com.fatec.model.Administrador;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -13,6 +14,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
 
 
 /**
@@ -44,11 +46,15 @@ public class TelaInicialController implements Initializable {
     }    
 
     @FXML
-    private void btnAdmin_Click(ActionEvent event) {
-        
+    private void btnAdmin_Click(ActionEvent event) throws Exception {
+        System.out.println("btn ADM");
+        Administrador adm = new Administrador(1, "nome", "senha");
+        adm.start(new Stage());
     }
 
     @FXML
     private void btnIniciar_Click(ActionEvent event) {
+        System.out.println("btn cliente");
+
     }
 }

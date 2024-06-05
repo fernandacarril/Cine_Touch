@@ -19,7 +19,17 @@ public class TelaAdmController implements Initializable {
 
     @FXML
     private ListView lvMenu;
+    private String dadoPassado;
 
+    public String getDadoPassado() {
+        return dadoPassado;
+    }
+
+    public void setDadoPassado(String dadoPassado) {
+        this.dadoPassado = dadoPassado;
+    }
+    
+    
     /**
      * Initializes the controller class.
      */
@@ -28,4 +38,7 @@ public class TelaAdmController implements Initializable {
         // TODO
     }    
     
+    public void mudaBotao(){
+        
+    }
 }
