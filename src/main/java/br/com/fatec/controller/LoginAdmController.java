@@ -6,6 +6,7 @@ package br.com.fatec.controller;
 
 import br.com.fatec.DAO.AdministradorDAO;
 import br.com.fatec.model.Administrador;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import javafx.fxml.FXML;
@@ -19,6 +20,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -83,29 +85,32 @@ public class LoginAdmController implements Initializable {
     }
 
     @FXML
-    private void btnConfirmar_Click(ActionEvent event) {
+    private void btnConfirmar_Click(ActionEvent event) throws IOException {
         //pega o login no text e joga para um objeto
         //para ser pesquisado
+        String login = txtUsuario.getText();
+        String senha = txtSenha.getText();
 
-        administrador = new Administrador(0,"","");
-        administrador.setLogin(txtUsuario.getText());
         try {
-            //faz uma procura 
-            administrador = administradorDAO.buscaID(administrador);
+            // Chama o método buscaPorLoginSenha da sua DAO para verificar as credenciais
+            Administrador administradorAutenticado = administradorDAO.buscaPorLoginSenha(login, senha);
 
-            //Verifica se achou
-            if (administrador == null) {
-                System.out.println("DEU BOM CARAI");
+            // Verifica se o administrador foi autenticado com sucesso
+            if (administradorAutenticado != null) {
+                // Autenticação bem-sucedida, faça o que desejar aqui
+                // Por exemplo, redirecione para a próxima tela
+                mensagem("Login bem-sucedido!");
+                
+                
+                // Código para redirecionar para a próxima tela...
             } else {
-                mensagem("Login nao encontrado");
-                txtUsuario.requestFocus();
+                // Autenticação falhou, exiba uma mensagem de erro
+                mensagem("Credenciais inválidas. Verifique seu login e senha.");
             }
         } catch (SQLException ex) {
-            mensagem("Erro na procura da Placa: "
-                    + ex.getMessage());
+            mensagem("Erro na autenticação: " + ex.getMessage());
         }
-        
-        
+
     }
 
     private void mensagem(String msg) {

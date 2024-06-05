@@ -30,6 +30,7 @@ public class AdministradorDAO
     private ResultSet rs; //pacote java.sql 
 
     //INSERE
+    @Override
     public boolean insere(Administrador model) throws SQLException {
         String sql = "INSERT INTO administrador (idAdmin, login, senha) "
                 + "VALUES (?, ?, ?);";
@@ -57,6 +58,7 @@ public class AdministradorDAO
     }
 
     //REMOVE
+    @Override
     public boolean remove(Administrador model) throws SQLException {
         String sql = "DELETE FROM administrador WHERE idAdmin = ?;";
         Banco.conectar();
@@ -79,6 +81,7 @@ public class AdministradorDAO
     }
 
     //altera 
+    @Override
     public boolean altera(Administrador model) throws SQLException {
         String sql = "UPDATE administrador SET login = ? "
                 + "WHERE idAdmin = ?;";
@@ -104,7 +107,50 @@ public class AdministradorDAO
         }
     }
 
+    
+    
+    
+    
+    
+    public Administrador buscaPorLoginSenha(String login, String senha) throws SQLException {
+        administrador = null;
+        // Comando SELECT
+        String sql = "SELECT * FROM administrador WHERE login = ? AND senha = ?;";
+
+        // Conecta ao banco
+        Banco.conectar();
+
+        // Cria o comando preparado
+        pst = Banco.obterConexao().prepareStatement(sql);
+
+        // Define os parâmetros da consulta
+        pst.setString(1, login);
+        pst.setString(2, senha);
+
+        // Executa o comando SELECT
+        rs = pst.executeQuery();
+
+        // Lê o próximo registro
+        if (rs.next()) { // Achou 1 registro
+            // Cria o objeto administrador
+            administrador = new Administrador(0,"","");
+            // Preenche os dados do administrador com os valores do banco de dados
+            administrador.setIdUsuario(rs.getInt("idAdmin"));
+            administrador.setLogin(rs.getString("login"));
+            administrador.setSenha(rs.getString("senha"));
+         
+        }
+
+        Banco.desconectar();
+
+        return administrador;
+    }
+
+    
+    
+    
     //BUSCA ID
+    @Override
     public Administrador buscaID(Administrador model) throws SQLException {
         administrador = null;
         //Comando SELECT
@@ -137,6 +183,7 @@ public class AdministradorDAO
     }
 
     
+    @Override
      public Collection<Administrador> lista(String criterio) 
                 throws SQLException {
         //criar uma coleção

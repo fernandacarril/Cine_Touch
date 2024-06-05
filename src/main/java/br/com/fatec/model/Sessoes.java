@@ -4,6 +4,15 @@
  */
 package br.com.fatec.model;
 
+import br.com.fatec.App;
+import br.com.fatec.controller.LoginAdmController;
+import static br.com.fatec.model.Administrador.setStage;
+import java.io.IOException;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+
 /**
  *
  * @author Fernanda
@@ -14,6 +23,9 @@ public class Sessoes {
     private Sala sala;
     private String dataI, dataF;
     private String horario;
+
+    public Sessoes() {
+    }
 
     
     
@@ -101,5 +113,7 @@ public class Sessoes {
     public void setHorario(String horario) {
         this.horario = horario;
     }
+
+
     
 }

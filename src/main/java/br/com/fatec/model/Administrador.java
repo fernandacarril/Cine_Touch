@@ -47,7 +47,6 @@ public class Administrador extends Usuario  {
         tela.show();        
 
     }
-   
     
     public static void setStage(Stage t) {
         tela = t;
