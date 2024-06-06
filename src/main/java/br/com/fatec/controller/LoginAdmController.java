@@ -125,7 +125,10 @@ public class LoginAdmController implements Initializable {
     }
 
     @FXML
+    //fecha a tela atual
     private void btnVoltar_Click(ActionEvent event) {
+        Stage stage = (Stage) btnVoltar.getScene().getWindow();
+        stage.close();
     }
 
 }

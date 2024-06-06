@@ -4,10 +4,6 @@
  */
 package br.com.fatec.controller;
 
-
-import br.com.fatec.model.Administrador;
-import br.com.fatec.model.Cliente;
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -18,47 +14,45 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
-
 /**
  * FXML Controller class
  *
  * @author Fernanda
  */
-public class TelaInicialController implements Initializable {
+public class IniciarPedidoController implements Initializable {
 
     @FXML
-    private Button btnIniciar;
+    private Label lblBreve;
     @FXML
-    private Label lblFernanda;
+    private Button btnVoltar;
     @FXML
     private ImageView imgLogo;
-    @FXML
-    private Label lblFernando;
-    @FXML
-    private Button btnAdmin;
+    
+    private String dadoPassado;
 
+    public String getDadoPassado() {
+        return dadoPassado;
+    }
 
+    public void setDadoPassado(String dadoPassado) {
+        this.dadoPassado = dadoPassado;
+    }
 
+    
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
-
-    @FXML
-    private void btnAdmin_Click(ActionEvent event) throws Exception {
-        System.out.println("btn ADM");
-        Administrador adm = new Administrador(1, "nome", "senha");
-        adm.start(new Stage());
     }
 
     @FXML
-    private void btnIniciar_Click(ActionEvent event) throws IOException {
-        System.out.println("btn Iniciar");
-        Cliente cliente = new Cliente("cpf",2);
-        cliente.start(new Stage());
-
+    private void btnVoltar_Click(ActionEvent event) {
+        Stage stage = (Stage) btnVoltar.getScene().getWindow();
+        stage.close();
+    
     }
+
+    
 }
