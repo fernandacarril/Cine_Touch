@@ -31,8 +31,7 @@ public class Administrador extends Usuario  {
     }
 
    
-   
-
+  
     public void start(Stage tela) throws IOException {
         setStage(tela);
         
@@ -45,7 +44,6 @@ public class Administrador extends Usuario  {
         
         tela.setScene(scene);
         tela.show();        
-
     }
     
     public static void setStage(Stage t) {

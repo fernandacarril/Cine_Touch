@@ -56,6 +56,16 @@ public class GerenciarSessõesController implements Initializable {
     @FXML
     private Button btnVoltar;
 
+    private String dadoPassado;
+
+    public String getDadoPassado() {
+        return dadoPassado;
+    }
+
+    public void setDadoPassado(String dadoPassado) {
+        this.dadoPassado = dadoPassado;
+    }
+    
     /**
      * Initializes the controller class.
      */

@@ -91,19 +91,19 @@ public class LoginAdmController implements Initializable {
         //para ser pesquisado
         String login = txtUsuario.getText();
         String senha = txtSenha.getText();
-
+                
         try {
             // Chama o método buscaPorLoginSenha da sua DAO para verificar as credenciais
             Administrador administradorAutenticado = administradorDAO.buscaPorLoginSenha(login, senha);
-
+                                
             // Verifica se o administrador foi autenticado com sucesso
             if (administradorAutenticado != null) {
                 // Autenticação bem-sucedida, faça o que desejar aqui
                 // Por exemplo, redirecione para a próxima tela
                 mensagem("Login bem-sucedido!");
                 Sessoes sessoes = new Sessoes();
-                
-               
+                sessoes.start(new Stage());
+                               
                 // Código para redirecionar para a próxima tela...
             } else {
                 // Autenticação falhou, exiba uma mensagem de erro
