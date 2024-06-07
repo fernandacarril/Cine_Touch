@@ -11,6 +11,7 @@ import br.com.fatec.model.Sala;
 import br.com.fatec.model.Sessoes;
 import java.net.URL;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.Collection;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -69,7 +70,7 @@ public class GerenciarSessõesController implements Initializable {
 
     private String dadoPassado;
     @FXML
-    private Button btnExcluir1;
+    private Button btnVisualizarSessoes;
 
     public String getDadoPassado() {
         return dadoPassado;
@@ -90,7 +91,6 @@ public class GerenciarSessõesController implements Initializable {
     /**
      * Initializes the controller class.
      */
-    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
@@ -106,20 +106,76 @@ public class GerenciarSessõesController implements Initializable {
             //colocar a lista gerada pela DAO dentro da COMBO
             listafilme.addAll(listFilm);
             //informa que a combo possui uma lista
-            cbFilme.setItems(listafilme); 
+            cbFilme.setItems(listafilme);
 
         } catch (SQLException ex) {
             mensagem(ex.getMessage());
         }
     }
-    
-    
-    
-    
-    
-    
-    
-    
+
+    @FXML
+    private void cbFilme_Change(ActionEvent event) {
+        if (cbFilme.getValue() != null) {
+            txtIdFilme.setText(String.valueOf(cbFilme.getValue().getIdFilme()));
+
+        } else {
+            txtIdFilme.setText("");
+        }
+    }
+
+    @FXML
+    private void mensagem(String msg) {
+        Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+        alerta.setTitle("Mensagem");
+        alerta.setHeaderText(msg);
+        alerta.setContentText("");
+
+        alerta.showAndWait(); //exibe a mensage
+    }
+
+    @FXML
+    private void btnGravar_Click(ActionEvent event) {
+        //verificar se dados estão OK
+        if (!validarDados()) {
+            mensagem("Por favor preencha todos os campos");
+            return; //sai fora do método
+        }
+
+        //move dados da tela para model
+        sessoes = carregar_Model();
+
+        try {
+            if (incluindo) { //se a operação geral é de inclusão
+                if (GerenciarSessõesDAO.insere(sessoes)) {
+                    mensagem("Veículo incluído com sucesso!!!");
+                    txtId.requestFocus();
+                } else {
+                    mensagem("Erro na Inclusão");
+                }
+            } else { //alterando
+                if (GerenciarSessõesDAO.altera(sessoes)) {
+                    mensagem("Veículo alterado com sucesso!!!");
+                    txtId.requestFocus();
+                } else {
+                    mensagem("Erro na Alteração");
+                }
+            }
+        } catch (SQLException ex) {
+            mensagem("Erro na Inclusão\n" + ex.getMessage());
+        }
+
+        //tudo certo, vamos incluir um veiculo novo
+        limparCampos();
+        habilitarInclusao(true);
+    }
+
+    @FXML
+    private void btnExcluir_Click(ActionEvent event) {
+    }
+
+    @FXML
+    private void btnVisualizarSessoes_Click(ActionEvent event) {
+    }
 
     private Sessoes carregar_Model() {
         Sessoes model = new Sessoes(cbFilme.getValue());
@@ -162,7 +218,7 @@ public class GerenciarSessõesController implements Initializable {
         txtIdFilme.setText(String.valueOf(model.getFilme().getIdFilme()));
         txtSala.setText(String.valueOf(model.getSala().getNumeroSala()));
         // Adicione aqui o código para atualizar os outros campos conforme necessário
-    
+
     }
 
     private Filme getFilmeById(int id) {
@@ -174,24 +230,32 @@ public class GerenciarSessõesController implements Initializable {
         return null; // Retorna null se não encontrar
     }
 
-    private void mensagem(String msg) {
-        Alert alerta = new Alert(Alert.AlertType.INFORMATION);
-        alerta.setTitle("Mensagem");
-        alerta.setHeaderText(msg);
-        alerta.setContentText("");
-
-        alerta.showAndWait(); //exibe a mensage
-    }
-
-    @FXML
-    private void cbFilme_Change(ActionEvent event) {
-        if(cbFilme.getValue() != null) {
-             txtIdFilme.setText(String.valueOf(cbFilme.getValue().getIdFilme()));
-
-        }
-        else {
-            txtIdFilme.setText("");
+    private boolean validarDados() {
+        if (txtId.getText().length() == 0
+                || txtIdFilme.getText().length() == 0
+                || cbFilme.getSelectionModel().isEmpty()
+                || txtSala.getText().length() == 0
+                || dtDataI.getValue() != null
+                || dtDataF.getValue() != null
+                || cbHorario.getSelectionModel().isEmpty()) {
+            return false;
+        } else {
+            return true;
         }
     }
-
+    
+    
+    private void limparCampos() {
+        txtIdFilme.setText("");
+        txtSala.setText("");
+        cbFilme.getSelectionModel().clearSelection();
+        dtDataI.setValue(null);
+        dtDataF.setValue(null);
+        cbHorario.getSelectionModel().clearSelection();
+        //manda o foco para a placa do veículoi
+        txtIdFilme.requestFocus();
+    }
+     private void habilitarInclusao(boolean inc) {
+        btnExcluir.setDisable(inc);
+    }
 }
