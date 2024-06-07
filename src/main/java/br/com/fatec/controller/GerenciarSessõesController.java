@@ -60,7 +60,7 @@ public class GerenciarSessõesController implements Initializable {
     @FXML
     private DatePicker dtDataF;
     @FXML
-    private ComboBox<?> cbHorario;
+    private ComboBox<Sessoes> cbHorario;
     @FXML
     private Button btnGravar;
     @FXML
@@ -85,6 +85,9 @@ public class GerenciarSessõesController implements Initializable {
     private Sessoes sessoes; ///model para 
     private ObservableList<Filme> listafilme
             = FXCollections.observableArrayList();
+    private ObservableList<Sessoes> listahorario
+            = FXCollections.observableArrayList();
+
     //para saber se a operação é de inclusão ou não
     private boolean incluindo = true;
 
@@ -95,7 +98,7 @@ public class GerenciarSessõesController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         carregar_Combo_filme();
-
+        carregar_Combo_horario();
     }
 
     private void carregar_Combo_filme() {
@@ -107,6 +110,23 @@ public class GerenciarSessõesController implements Initializable {
             listafilme.addAll(listFilm);
             //informa que a combo possui uma lista
             cbFilme.setItems(listafilme);
+
+        } catch (SQLException ex) {
+            mensagem(ex.getMessage());
+        }
+    }
+
+    private void carregar_Combo_horario() {
+        GerenciarSesõesDAO gerDao = new GerenciarSesõesDAO();
+        try {
+            //busca todos os registros no banco para uma Coleção
+            Collection<Sessoes> listhoras = gerDao.listaHoras("");
+            // Limpa a lista existente
+            listahorario.clear();
+            //colocar a lista gerada pela DAO dentro da COMBO
+            listahorario.addAll(listhoras);
+            //informa que a combo possui uma lista
+            cbHorario.setItems(listahorario);
 
         } catch (SQLException ex) {
             mensagem(ex.getMessage());
@@ -243,8 +263,7 @@ public class GerenciarSessõesController implements Initializable {
             return true;
         }
     }
-    
-    
+
     private void limparCampos() {
         txtIdFilme.setText("");
         txtSala.setText("");
@@ -255,7 +274,12 @@ public class GerenciarSessõesController implements Initializable {
         //manda o foco para a placa do veículoi
         txtIdFilme.requestFocus();
     }
-     private void habilitarInclusao(boolean inc) {
+
+    private void habilitarInclusao(boolean inc) {
         btnExcluir.setDisable(inc);
+    }
+
+    @FXML
+    private void btnVoltar_Click(ActionEvent event) {
     }
 }

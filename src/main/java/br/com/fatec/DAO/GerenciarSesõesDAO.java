@@ -4,6 +4,7 @@
  */
 package br.com.fatec.DAO;
 
+import br.com.fatec.model.Administrador;
 import br.com.fatec.model.Filme;
 import br.com.fatec.model.Sala;
 import br.com.fatec.model.Sessoes;
@@ -182,7 +183,7 @@ public class GerenciarSesõesDAO implements DAO<Sessoes> {
 
         //le o próximo regitro
         while (rs.next()) { //achou 1 registro
-             sessoes = new Sessoes();
+            sessoes = new Sessoes();
             sessoes.setIdSessao(rs.getInt("idSessao"));
 
             // Configura o filme (supondo que você tenha um objeto Filme)
@@ -205,6 +206,34 @@ public class GerenciarSesõesDAO implements DAO<Sessoes> {
 
         Banco.desconectar();
 
+        return listagem;
+    }
+
+    public Collection<Sessoes> listaHoras(String criterio)
+            throws SQLException {
+        //criar uma coleção
+        Collection<Sessoes> listagem = new ArrayList<>();
+
+        sessoes = null;
+        //Comando SELECT
+        String sql = "SELECT * FROM sessao ";
+        //colocar filtro ou nao
+        if (criterio.length() != 0) {
+            sql += "WHERE " + criterio;
+        }
+        Banco.conectar();
+
+        pst = Banco.obterConexao().prepareStatement(sql);
+
+        //Executa o comando SELECT
+        rs = pst.executeQuery();
+        while (rs.next()) { //achou 1 registro
+            //cria o objeto veiculo
+            sessoes = new Sessoes();
+            sessoes.setHorario(rs.getString("horario"));
+            listagem.add(sessoes);
+        }
+        Banco.desconectar();
         return listagem;
     }
 }
