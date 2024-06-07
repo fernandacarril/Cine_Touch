@@ -147,8 +147,6 @@ public class AdministradorDAO
     }
 
     
-    
-    
     //BUSCA ID
     @Override
     public Administrador buscaID(Administrador model) throws SQLException {

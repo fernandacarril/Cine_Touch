@@ -66,6 +66,14 @@ public class GerenciarSessõesController implements Initializable {
         this.dadoPassado = dadoPassado;
     }
     
+    //variaveis auxiliares 
+    
+    
+    
+    
+    
+    
+    
     /**
      * Initializes the controller class.
      */
