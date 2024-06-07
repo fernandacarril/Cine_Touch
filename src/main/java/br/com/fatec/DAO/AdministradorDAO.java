@@ -168,11 +168,11 @@ public class AdministradorDAO
 
         //le o próximo regitro
         if (rs.next()) { //achou 1 registro
-            //cria o objeto proprietario
+            //cria o objeto administrador
             administrador = new Administrador(1,"login","senha");
             //move os dados do resultSet para o objeto proprietario
             administrador.setIdUsuario(rs.getInt("idAdmin"));
-            administrador.setLogin(rs.getString("login"));
+            administrador.setLogin(rs.getString("login")); 
         }
         
         Banco.desconectar();
