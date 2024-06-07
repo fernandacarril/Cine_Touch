@@ -17,7 +17,7 @@
         <URL value="@/br/com/fatec/css/loginadm.css" />
     </stylesheets>
    <children>
-      <ImageView fx:id="imgLogo" fitHeight="239.0" fitWidth="412.0" layoutX="-35.0" layoutY="84.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="imgLogo" fitHeight="239.0" fitWidth="412.0" layoutX="8.0" layoutY="81.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@images/imgLogo.png" />
          </image>

@@ -16,7 +16,7 @@
       <Label fx:id="lblFernando" layoutX="201.0" layoutY="378.0" text="Fernando Kristos Gomes Katifedenios" />
       <Button fx:id="btnIniciar" layoutX="190.0" layoutY="152.0" mnemonicParsing="false" onAction="#btnIniciar_Click" prefHeight="90.0" prefWidth="219.0" text="Iniciar Pedido" />
       <Button fx:id="btnAdmin" layoutX="484.0" layoutY="14.0" mnemonicParsing="false" onAction="#btnAdmin_Click" text="Administrador" />
-      <ImageView fx:id="imgLogo" fitHeight="129.0" fitWidth="265.0" layoutX="-8.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="imgLogo" fitHeight="129.0" fitWidth="265.0" layoutX="14.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@images/imgLogo.png" />
          </image>

@@ -2,12 +2,10 @@ br\com\fatec\controller\TelaAdmController.class
 br\com\fatec\model\Poltrona.class
 br\com\fatec\controller\LoginAdmController.class
 br\com\fatec\controller\IniciarPedidoController.class
-br\com\fatec\controller\GerenciarSessõesController.class
 br\com\fatec\model\Sala.class
 br\com\fatec\model\Administrador.class
 br\com\fatec\DAO\DAO.class
 br\com\fatec\model\Sessoes.class
-br\com\fatec\DAO\GerenciarSesõesDAO.class
 br\com\fatec\DAO\AdministradorDAO.class
 br\com\fatec\App.class
 br\com\fatec\controller\GerenciarFilmeController.class

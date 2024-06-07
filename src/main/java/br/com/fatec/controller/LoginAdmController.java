@@ -101,8 +101,8 @@ public class LoginAdmController implements Initializable {
                 // Autenticação bem-sucedida, faça o que desejar aqui
                 // Por exemplo, redirecione para a próxima tela
                 mensagem("Login bem-sucedido!");
-                Sessoes sessoes = new Sessoes();
-                sessoes.start(new Stage());
+                Administrador menu = new Administrador(1);
+                menu.startMenu(new Stage());
                                
                 // Código para redirecionar para a próxima tela...
             } else {
