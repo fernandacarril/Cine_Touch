@@ -40,7 +40,7 @@ public class Sessoes {
         controller.setDadoPassado("Funcionou");
 
 
-        Scene scene = new Scene(root, 640, 480);
+        Scene scene = new Scene(root);
  
 
         tela.setScene(scene);
