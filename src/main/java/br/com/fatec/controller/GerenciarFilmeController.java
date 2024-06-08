@@ -226,11 +226,11 @@ public class GerenciarFilmeController implements Initializable {
         
         try {
             if(filmeDAO.remove(filme)) {
-                mensagem("Veículo excluído com Sucesso !!!");
+                mensagem("Filme excluído com Sucesso !!!");
                 cbId.requestFocus();
             } 
             else {
-                mensagem("Ocorreu algum erro para exclusão");
+                mensagem("Filme algum erro para exclusão");
             }
         } catch (SQLException ex) {
             mensagem("Erro de Exclusão\n" + ex.getMessage());
