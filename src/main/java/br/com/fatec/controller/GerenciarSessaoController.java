@@ -84,9 +84,13 @@ public class GerenciarSessaoController implements Initializable {
 
     private Sessoes carregar_model() {
         Sessoes model = new Sessoes();
-        int idSessao = Integer.parseInt(txt_SessaoId.getText());
-        int numeroSala = Integer.parseInt(txt_Sala.getText());
-
+        model.setIdSessao(Integer.parseInt(txt_SessaoId.getText()));
+        model.setSala(Integer.parseInt(txt_Sala.getText()));
+        model.setFilme(Integer.parseInt(txt_FilmeId.getText()));
+        model.setDataI(txt_DataInicio.getText());
+        model.setDataF(txt_DataFim.getText());
+        model.setHorario(txt_Horas.getText());
+        
     }
 
     @FXML
