@@ -5,13 +5,12 @@
 package br.com.fatec.controller;
 
 import br.com.fatec.DAO.FilmeDAO;
-import br.com.fatec.DAO.GerenciarSesõesDAO;
+import br.com.fatec.DAO.SessoesDAO;
 import br.com.fatec.model.Filme;
 import br.com.fatec.model.Sala;
 import br.com.fatec.model.Sessoes;
 import java.net.URL;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.util.Collection;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -81,7 +80,7 @@ public class GerenciarSessoesController implements Initializable {
     }
 
     //variaveis auxiliares 
-    private GerenciarSesõesDAO GerenciarSessõesDAO = new GerenciarSesõesDAO();
+    private SessoesDAO SessoesDAO = new SessoesDAO();
     private Sessoes sessoes; ///model para 
     private ObservableList<Filme> listafilme
             = FXCollections.observableArrayList();
@@ -117,7 +116,7 @@ public class GerenciarSessoesController implements Initializable {
     }
 
     private void carregar_Combo_horario() {
-        GerenciarSesõesDAO gerDao = new GerenciarSesõesDAO();
+        SessoesDAO gerDao = new SessoesDAO();
         try {
             //busca todos os registros no banco para uma Coleção
             Collection<Sessoes> listhoras = gerDao.listaHoras("");
@@ -166,14 +165,14 @@ public class GerenciarSessoesController implements Initializable {
 
         try {
             if (incluindo) { //se a operação geral é de inclusão
-                if (GerenciarSessõesDAO.insere(sessoes)) {
+                if (SessoesDAO.insere(sessoes)) {
                     mensagem("Veículo incluído com sucesso!!!");
                     txtId.requestFocus();
                 } else {
                     mensagem("Erro na Inclusão");
                 }
             } else { //alterando
-                if (GerenciarSessõesDAO.altera(sessoes)) {
+                if (SessoesDAO.altera(sessoes)) {
                     mensagem("Veículo alterado com sucesso!!!");
                     txtId.requestFocus();
                 } else {

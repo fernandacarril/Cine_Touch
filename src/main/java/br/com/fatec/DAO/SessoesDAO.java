@@ -4,7 +4,6 @@
  */
 package br.com.fatec.DAO;
 
-import br.com.fatec.model.Administrador;
 import br.com.fatec.model.Filme;
 import br.com.fatec.model.Sala;
 import br.com.fatec.model.Sessoes;
@@ -20,18 +19,17 @@ import java.util.Collection;
  *
  * @author AMD
  */
-public class GerenciarSesõesDAO implements DAO<Sessoes> {
-
+public class SessoesDAO {
+    
     private Sessoes sessoes;
 
     //para conter os comandos DML
     private PreparedStatement pst; //pacote java.sql
     //para conter os dados vindos do BD
     private ResultSet rs; //pacote java.sql 
-
-    @Override
-
-    public boolean insere(Sessoes model) throws SQLException {
+    
+    
+ public boolean insere(Sessoes model) throws SQLException {
         String sql = "INSERT INTO sessao (idSessao, dataInicio, dataFim, horario, numeroSala, idFilme ) "
                 + "VALUES (?, ?, ?, ?, ?, ?);";
 
@@ -72,8 +70,6 @@ public class GerenciarSesõesDAO implements DAO<Sessoes> {
             return false;
         }
     }
-
-    @Override
     public boolean remove(Sessoes model) throws SQLException {
         String sql = "DELETE FROM sessao WHERE idSessao = ?;";
 
@@ -96,8 +92,6 @@ public class GerenciarSesõesDAO implements DAO<Sessoes> {
             return false;
         }
     }
-
-    @Override
     public boolean altera(Sessoes model) throws SQLException {
         String sql = "UPDATE sessao SET idFilme = ?, dataInicio = ?, dataFim = ?, horario = ?, "
                 + "numeroSala = ? WHERE idSessao = ?";
@@ -128,7 +122,6 @@ public class GerenciarSesõesDAO implements DAO<Sessoes> {
         }
     }
 
-    @Override
     public Sessoes buscaID(Sessoes model) throws SQLException {
         sessoes = null;
         //Comando SELECT
@@ -174,8 +167,7 @@ public class GerenciarSesõesDAO implements DAO<Sessoes> {
         return sessoes;
 
     }
-
-    @Override
+    
     public Collection<Sessoes> lista(String criterio)
             throws SQLException {
         //criar uma coleção
@@ -225,7 +217,7 @@ public class GerenciarSesõesDAO implements DAO<Sessoes> {
         return listagem;
     }
 
-    public Collection<Sessoes> listaHoras(String criterio)
+  public Collection<Sessoes> listaHoras(String criterio)
             throws SQLException {
         //criar uma coleção
         Collection<Sessoes> listagem = new ArrayList<>();
@@ -252,4 +244,7 @@ public class GerenciarSesõesDAO implements DAO<Sessoes> {
         Banco.desconectar();
         return listagem;
     }
+
+
+    
 }
