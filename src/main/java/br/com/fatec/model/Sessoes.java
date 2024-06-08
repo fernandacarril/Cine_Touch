@@ -34,7 +34,7 @@ public class Sessoes {
    
     public void start(Stage tela) throws IOException {
         setStage(tela);
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("view/GerenciarSessões.fxml"));   
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("view/GerenciarSessoes.fxml"));   
         Parent root = fxmlLoader.load();
         GerenciarSessoesController controller = fxmlLoader.getController();
         controller.setDadoPassado("Funcionou");
