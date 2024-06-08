@@ -23,9 +23,6 @@ public class VisualizarSessoesController implements Initializable {
         return dadoPassado;
     }
 
-
-
-
     @FXML
     private TableView<?> tvSessoes;
 

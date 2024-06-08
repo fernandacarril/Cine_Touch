@@ -37,14 +37,11 @@ public class Administrador extends Usuario  {
    
     public void startMenu(Stage tela) throws IOException {
         setStage(tela);
-        
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("view/TelaAdm.fxml"));
         Parent root = fxmlLoader.load();
         TelaAdmController controller = fxmlLoader.getController();
         controller.setDadoPassado("Funcionou");
-
         Scene scene = new Scene(root);
-        
         tela.setScene(scene);
         tela.show();
     }
