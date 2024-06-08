@@ -37,9 +37,9 @@ CREATE TABLE Sala_Poltrona (
 
 CREATE TABLE Sessao (
      idSessao INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-     dataInicio DATE NOT NULL,
-     dataFim VARCHAR (11) NOT NULL,
-     horario TIME NOT NULL,
+     dataInicio VARCHAR (10) NOT NULL,
+     dataFim VARCHAR (10) NOT NULL,
+     horario VARCHAR (4) NOT NULL,
      numeroSala INT NOT NULL,
      idFilme INT NOT NULL,
      FOREIGN KEY (numeroSala) REFERENCES Sala(numeroSala),

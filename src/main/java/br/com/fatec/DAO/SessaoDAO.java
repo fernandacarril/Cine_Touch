@@ -18,10 +18,9 @@ import java.util.Collection;
  *
  * @author AMD
  */
-public class SessoesDAO implements DAO<Sessoes> {
+public class SessaoDAO implements DAO<Sessoes> {
 
     private Sessoes sessoes;
-
     //para conter os comandos DML
     private PreparedStatement pst; //pacote java.sql
     //para conter os dados vindos do BD
@@ -29,46 +28,30 @@ public class SessoesDAO implements DAO<Sessoes> {
 
     @Override
     public boolean insere(Sessoes model) throws SQLException {
-        String sql = "INSERT INTO sessao (idSessao, dataInicio, dataFim, horario, numeroSala, idFilme) "
+        String sql = "INSERT INTO sessao (idSessao, dataInicio, dataFim, horario, numeroSala, idFilme ) "
                 + "VALUES (?, ?, ?, ?, ?, ?);";
-
-        // Abre a conexao
+        //Abre a conexao
         Banco.conectar();
-
-        // Cria o comando preparado
+        //cria o comando preparado
         pst = Banco.obterConexao().prepareStatement(sql);
-
-        // Coloca os valores dentro do comando
-        // Substitui as '?' por dados
-        pst = Banco.obterConexao().prepareStatement(sql);
-        pst.setInt(1, model.getFilme().getIdFilme());
-
-        // Verifica se a data de início é nula antes de chamar toString()
-        if (model.getDataI() != null) {
-            pst.setString(2, model.getDataI().toString()); // Convertendo LocalDate para String
-        } else {
-            pst.setString(2, null); // ou qualquer tratamento desejado para o caso de data nula
-        }
-
-        // Verifica se a data de fim é nula antes de chamar toString()
-        if (model.getDataF() != null) {
-            pst.setString(3, model.getDataF().toString()); // Convertendo LocalDate para String
-        } else {
-            pst.setString(3, null); // ou qualquer tratamento desejado para o caso de data nula
-        }
-
-        pst.setTime(4, model.getHorario());
+        //coloca os valores dentro do comando
+        //substitui as '?' por dados
+        pst.setInt(1, model.getIdSessao());
+        pst.setString(2, model.getDataI());
+        pst.setString(3, model.getDataF());
+        pst.setString(4, model.getHorario());
         pst.setInt(5, model.getSala().getNumeroSala());
-        pst.setInt(6, model.getIdSessao());
+        pst.setInt(6, model.getFilme().getIdFilme());
 
-        // Executa o comando
-        if (pst.executeUpdate() >= 1) { // Tudo certo
+        //executa o comando
+        if (pst.executeUpdate() >= 1) { //tudo certo
             Banco.desconectar();
             return true;
         } else {
             Banco.desconectar();
             return false;
         }
+
     }
 
     @Override
@@ -93,53 +76,39 @@ public class SessoesDAO implements DAO<Sessoes> {
             Banco.desconectar();
             return false;
         }
+
     }
 
     @Override
+    public boolean altera(Sessoes model) throws SQLException {
+        String sql = "UPDATE sessao SET idFilme = ?, dataInicio = ?, dataFim = ?, horario = ?, "
+                + "numeroSala = ? WHERE idSessao = ?";
 
- 
-public boolean altera(Sessoes model) throws SQLException {
-    String sql = "UPDATE sessao SET idFilme = ?, dataInicio = ?, dataFim = ?, horario = ?, "
-            + "numeroSala = ? WHERE idSessao = ?";
+        //Abre a conexao
+        Banco.conectar();
 
-    // Abre a conexao
-    Banco.conectar();
+        //cria o comando preparado
+        pst = Banco.obterConexao().prepareStatement(sql);
 
-    // Cria o comando preparado
-    pst = Banco.obterConexao().prepareStatement(sql);
+        //coloca os valores dentro do comando
+        //substitui as '?' por dados
+        pst = Banco.obterConexao().prepareStatement(sql);
+        pst.setInt(1, model.getFilme().getIdFilme());
+        pst.setString(2, model.getDataI());
+        pst.setString(3, model.getDataF());// Convertendo LocalDate para String
+        pst.setString(4, model.getHorario());
+        pst.setInt(5, model.getSala().getNumeroSala());
+        pst.setInt(6, model.getIdSessao());
 
-    // Coloca os valores dentro do comando
-    // Substitui as '?' por dados
-    pst = Banco.obterConexao().prepareStatement(sql);
-    pst.setInt(1, model.getFilme().getIdFilme());
-    
-    // Verifica se a data de início é nula antes de chamar toString()
-    if (model.getDataI() != null) {
-        pst.setString(2, model.getDataI().toString()); // Convertendo LocalDate para String
-    } else {
-        pst.setNull(2, java.sql.Types.DATE); // Definindo como null
+        //executa o comando
+        if (pst.executeUpdate() >= 1) { //tudo certo
+            Banco.desconectar();
+            return true;
+        } else {
+            Banco.desconectar();
+            return false;
+        }
     }
-    
-    // Verifica se a data de fim é nula antes de chamar toString()
-    if (model.getDataF() != null) {
-        pst.setString(3, model.getDataF().toString()); // Convertendo LocalDate para String
-    } else {
-        pst.setNull(3, java.sql.Types.DATE); // Definindo como null
-    }
-    
-    pst.setTime(4, model.getHorario());
-    pst.setInt(5, model.getSala().getNumeroSala());
-    pst.setInt(6, model.getIdSessao());
-
-    // Executa o comando
-    if (pst.executeUpdate() >= 1) { // Tudo certo
-        Banco.desconectar();
-        return true;
-    } else {
-        Banco.desconectar();
-        return false;
-    }
-}
 
     @Override
     public Sessoes buscaID(Sessoes model) throws SQLException {
@@ -172,9 +141,9 @@ public boolean altera(Sessoes model) throws SQLException {
             sessoes.setFilme(filme);
 
             // Configura as outras propriedades de sessoes
-            sessoes.setDataI(rs.getDate("dataInicio"));
-            sessoes.setDataF(rs.getDate("dataFim"));
-            sessoes.setHorario(rs.getTime("horario"));
+            sessoes.setDataI(rs.getString("dataInicio"));
+            sessoes.setDataF(rs.getString("dataFim"));
+            sessoes.setHorario(rs.getString("horario"));
 
             // Configura a sala (supondo que você tenha um objeto Sala)
             Sala sala = new Sala();
@@ -189,8 +158,8 @@ public boolean altera(Sessoes model) throws SQLException {
     }
 
     @Override
-    public Collection<Sessoes> lista(String criterio)
-            throws SQLException {
+    public Collection<Sessoes> lista(String criterio) throws SQLException {
+
         //criar uma coleção
         Collection<Sessoes> listagem = new ArrayList<>();
 
@@ -222,9 +191,9 @@ public boolean altera(Sessoes model) throws SQLException {
             sessoes.setFilme(filme);
 
             // Configura as outras propriedades de sessoes
-            sessoes.setDataI(rs.getDate("dataInicio"));
-            sessoes.setDataF(rs.getDate("dataFim"));
-            sessoes.setHorario(rs.getTime("horario"));
+            sessoes.setDataI(rs.getString("dataInicio"));
+            sessoes.setDataF(rs.getString("dataFim"));
+            sessoes.setHorario(rs.getString("horario"));
 
             // Configura a sala (supondo que você tenha um objeto Sala)
             Sala sala = new Sala();
@@ -237,33 +206,5 @@ public boolean altera(Sessoes model) throws SQLException {
 
         return listagem;
     }
-
-    public Collection<Sessoes> listaHoras(String criterio)
-            throws SQLException {
-        //criar uma coleção
-        Collection<Sessoes> listagem = new ArrayList<>();
-
-        sessoes = null;
-        //Comando SELECT
-        String sql = "SELECT * FROM sessao ";
-        //colocar filtro ou nao
-        if (criterio.length() != 0) {
-            sql += "WHERE " + criterio;
-        }
-        Banco.conectar();
-
-        pst = Banco.obterConexao().prepareStatement(sql);
-
-        //Executa o comando SELECT
-        rs = pst.executeQuery();
-        while (rs.next()) { //achou 1 registro
-            //cria o objeto veiculo
-            sessoes = new Sessoes();
-            sessoes.setHorario(rs.getTime("horario"));
-            listagem.add(sessoes);
-        }
-        Banco.desconectar();
-        return listagem;
-    }
-
+    
 }

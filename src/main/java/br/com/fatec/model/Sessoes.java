@@ -5,13 +5,10 @@
 package br.com.fatec.model;
 
 import br.com.fatec.App;
-import br.com.fatec.controller.GerenciarSessoesController;
+import br.com.fatec.controller.GerenciarSessaoController;
 import br.com.fatec.controller.VisualizarSessoesController;
 import static br.com.fatec.model.Administrador.setStage;
 import java.io.IOException;
-import java.sql.Date;
-import java.sql.Time;
-import java.time.LocalDate;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -26,18 +23,18 @@ public class Sessoes {
     private int idSessao;
     private Filme filme;
     private Sala sala;
-    private Date dataI;
-    private Date dataF;
-    private Time horario;
+    private String dataI;
+    private String dataF;
+    private String horario;
 
     public Sessoes() {
     }
  
     public void start(Stage tela) throws IOException {
         setStage(tela);
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("view/GerenciarSessoes.fxml"));   
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("view/GerenciarSessao.fxml"));   
         Parent root = fxmlLoader.load();
-        GerenciarSessoesController controller = fxmlLoader.getController();
+        GerenciarSessaoController controller = fxmlLoader.getController();
         controller.setDadoPassado("Funcionou");
         Scene scene = new Scene(root);
         tela.setScene(scene);
@@ -59,15 +56,31 @@ public class Sessoes {
         return "Sessoes{" + "idSessao=" + idSessao + ", filme=" + filme + ", sala=" + sala + ", dataI=" + dataI + ", dataF=" + dataF + ", horario=" + horario + '}';
     }
 
-    public void setHorario(Time horario) {
-        this.horario = horario;
+    public String getDataI() {
+        return dataI;
     }
 
-    public Time getHorario() {
+    public void setDataI(String dataI) {
+        this.dataI = dataI;
+    }
+
+    public String getDataF() {
+        return dataF;
+    }
+
+    public void setDataF(String dataF) {
+        this.dataF = dataF;
+    }
+
+    public String getHorario() {
         return horario;
     }
 
-    public Sessoes(int idSessao, Filme filme, Sala sala, Date dataI, Date dataF, Time horario) {
+    public void setHorario(String horario) {
+        this.horario = horario;
+    }
+
+    public Sessoes(int idSessao, Filme filme, Sala sala, String dataI, String dataF, String horario) {
         this.idSessao = idSessao;
         this.filme = filme;
         this.sala = sala;
@@ -75,6 +88,9 @@ public class Sessoes {
         this.dataF = dataF;
         this.horario = horario;
     }
+
+
+
 
     @Override
     public int hashCode() {
@@ -100,23 +116,6 @@ public class Sessoes {
 
     public Sessoes(Filme filme) {
         this.filme = filme;
-    }
-
-   
-    public Date getDataI() {
-        return dataI;
-    }
-
-    public void setDataI(Date dataI) {
-        this.dataI = dataI;
-    }
-
-    public Date getDataF() {
-        return dataF;
-    }
-
-    public void setDataF(Date dataF) {
-        this.dataF = dataF;
     }
 
     public int getIdSessao() {

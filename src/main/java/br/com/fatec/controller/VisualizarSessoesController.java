@@ -4,7 +4,7 @@
  */
 package br.com.fatec.controller;
 
-import br.com.fatec.DAO.SessoesDAO;
+import br.com.fatec.DAO.SessaoDAO;
 import br.com.fatec.model.Sessoes;
 import java.net.URL;
 import java.sql.SQLException;
@@ -104,7 +104,7 @@ public class VisualizarSessoesController implements Initializable {
     }    
 
     private ObservableList<Sessoes> preencheTabela() {
-        SessoesDAO dao = new SessoesDAO();
+        SessaoDAO dao = new SessaoDAO();
         ObservableList<Sessoes> sessoes
             = FXCollections.observableArrayList();
         

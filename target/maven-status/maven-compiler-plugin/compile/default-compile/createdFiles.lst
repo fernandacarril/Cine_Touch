@@ -1,9 +1,8 @@
+br\com\fatec\controller\GerenciarSessaoController.class
 br\com\fatec\controller\TelaAdmController.class
-br\com\fatec\controller\GerenciarSessoesController.class
 br\com\fatec\model\Poltrona.class
 br\com\fatec\controller\LoginAdmController.class
 br\com\fatec\controller\IniciarPedidoController.class
-br\com\fatec\DAO\SessoesDAO.class
 br\com\fatec\model\Sala.class
 br\com\fatec\model\Administrador.class
 br\com\fatec\DAO\DAO.class
@@ -14,6 +13,7 @@ br\com\fatec\controller\GerenciarFilmeController.class
 br\com\fatec\controller\VisualizarSessoesController.class
 br\com\fatec\DAO\FilmeDAO.class
 br\com\fatec\controller\TelaInicialController.class
+br\com\fatec\DAO\SessaoDAO.class
 br\com\fatec\persistencia\Banco.class
 br\com\fatec\model\Cliente.class
 br\com\fatec\model\Usuario.class
