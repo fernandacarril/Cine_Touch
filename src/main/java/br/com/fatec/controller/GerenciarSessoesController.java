@@ -242,7 +242,7 @@ public class GerenciarSessoesController implements Initializable {
             || txtSala.getText().length() == 0
             || dtDataI.getValue() == null
             || dtDataF.getValue() == null
-            || cbHorario.getSelectionModel().isEmpty()) {
+            || txtHoras.getText().length() == 0 ){
         return false;
     } else {
         return true;
@@ -256,7 +256,7 @@ public class GerenciarSessoesController implements Initializable {
         cbFilme.getSelectionModel().clearSelection();
         dtDataI.setValue(null);
         dtDataF.setValue(null);
-        cbHorario.getSelectionModel().clearSelection();
+        txtHoras.setText("");
         //manda o foco para a placa do veículoi
         txtIdFilme.requestFocus();
     }
