@@ -11,6 +11,7 @@ import br.com.fatec.persistencia.Banco;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Time;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -30,46 +31,49 @@ public class SessoesDAO {
     
     
  public boolean insere(Sessoes model) throws SQLException {
-        String sql = "INSERT INTO sessao (idSessao, dataInicio, dataFim, horario, numeroSala, idFilme ) "
-                + "VALUES (?, ?, ?, ?, ?, ?);";
+    String sql = "INSERT INTO sessao (idSessao, dataInicio, dataFim, horario, numeroSala, idFilme) "
+            + "VALUES (?, ?, ?, ?, ?, ?);";
 
-        //Abre a conexao
-        Banco.conectar();
+    // Abre a conexao
+    Banco.conectar();
 
-        //cria o comando preparado
-        pst = Banco.obterConexao().prepareStatement(sql);
+    // Cria o comando preparado
+    pst = Banco.obterConexao().prepareStatement(sql);
 
-        //coloca os valores dentro do comando
-        //substitui as '?' por dados
-        pst.setInt(1, model.getIdSessao());
+    // Coloca os valores dentro do comando
+    // Substitui as '?' por dados
+    pst.setInt(1, model.getIdSessao());
 
-        // Definindo um valor mínimo para data de início se for nula
-        if (model.getDataI() == null) {
-            pst.setDate(2, java.sql.Date.valueOf(LocalDate.MIN));
-        } else {
-            pst.setDate(2, model.getDataI());
-        }
-
-        // Definindo um valor mínimo para data de fim se for nula
-        if (model.getDataF() == null) {
-            pst.setDate(3, java.sql.Date.valueOf(LocalDate.MIN));
-        } else {
-            pst.setDate(3, model.getDataF());
-        }
-
-        pst.setString(4, model.getHorario());
-        pst.setInt(5, model.getSala().getNumeroSala());
-        pst.setInt(6, model.getFilme().getIdFilme());
-
-        //executa o comando
-        if (pst.executeUpdate() >= 1) { //tudo certo
-            Banco.desconectar();
-            return true;
-        } else {
-            Banco.desconectar();
-            return false;
-        }
+    // Definindo um valor mínimo para data de início se for nula
+    if (model.getDataI() == null) {
+        pst.setDate(2, java.sql.Date.valueOf(LocalDate.MIN));
+    } else {
+        pst.setDate(2, model.getDataI());
     }
+
+    // Definindo um valor mínimo para data de fim se for nula
+    if (model.getDataF() == null) {
+        pst.setDate(3, java.sql.Date.valueOf(LocalDate.MIN));
+    } else {
+        pst.setDate(3, model.getDataF());
+    }
+
+    // Passando o objeto java.sql.Time diretamente
+    pst.setTime(4, model.getHorario());
+
+    pst.setInt(5, model.getSala().getNumeroSala());
+    pst.setInt(6, model.getFilme().getIdFilme());
+
+    // Executa o comando
+    if (pst.executeUpdate() >= 1) { // Tudo certo
+        Banco.desconectar();
+        return true;
+    } else {
+        Banco.desconectar();
+        return false;
+    }
+}
+
     public boolean remove(Sessoes model) throws SQLException {
         String sql = "DELETE FROM sessao WHERE idSessao = ?;";
 
@@ -108,7 +112,7 @@ public class SessoesDAO {
         pst.setInt(1, model.getFilme().getIdFilme());
         pst.setString(2, model.getDataI().toString()); // Convertendo LocalDate para String
         pst.setString(3, model.getDataF().toString()); // Convertendo LocalDate para String
-        pst.setString(4, model.getHorario());
+        pst.setTime(4, model.getHorario());
         pst.setInt(5, model.getSala().getNumeroSala());
         pst.setInt(6, model.getIdSessao());
 
@@ -154,7 +158,7 @@ public class SessoesDAO {
             // Configura as outras propriedades de sessoes
             sessoes.setDataI(rs.getDate("dataInicio"));
             sessoes.setDataF(rs.getDate("dataFim"));
-            sessoes.setHorario(rs.getString("horario"));
+            sessoes.setHorario(rs.getTime("horario"));
 
             // Configura a sala (supondo que você tenha um objeto Sala)
             Sala sala = new Sala();
@@ -203,7 +207,7 @@ public class SessoesDAO {
             // Configura as outras propriedades de sessoes
             sessoes.setDataI(rs.getDate("dataInicio"));
             sessoes.setDataF(rs.getDate("dataFim"));
-            sessoes.setHorario(rs.getString("horario"));
+            sessoes.setHorario(rs.getTime("horario"));
 
             // Configura a sala (supondo que você tenha um objeto Sala)
             Sala sala = new Sala();
@@ -238,7 +242,7 @@ public class SessoesDAO {
         while (rs.next()) { //achou 1 registro
             //cria o objeto veiculo
             sessoes = new Sessoes();
-            sessoes.setHorario(rs.getString("horario"));
+            sessoes.setHorario(rs.getTime("horario"));
             listagem.add(sessoes);
         }
         Banco.desconectar();

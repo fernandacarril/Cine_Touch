@@ -10,6 +10,7 @@ import br.com.fatec.controller.VisualizarSessoesController;
 import static br.com.fatec.model.Administrador.setStage;
 import java.io.IOException;
 import java.sql.Date;
+import java.sql.Time;
 import java.time.LocalDate;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -27,7 +28,7 @@ public class Sessoes {
     private Sala sala;
     private Date dataI;
     private Date dataF;
-    private String horario;
+    private Time horario;
 
     public Sessoes() {
     }
@@ -51,6 +52,28 @@ public class Sessoes {
         Scene scene = new Scene(root);
         tela.setScene(scene);
         tela.show();
+    }
+
+    @Override
+    public String toString() {
+        return "Sessoes{" + "idSessao=" + idSessao + ", filme=" + filme + ", sala=" + sala + ", dataI=" + dataI + ", dataF=" + dataF + ", horario=" + horario + '}';
+    }
+
+    public void setHorario(Time horario) {
+        this.horario = horario;
+    }
+
+    public Time getHorario() {
+        return horario;
+    }
+
+    public Sessoes(int idSessao, Filme filme, Sala sala, Date dataI, Date dataF, Time horario) {
+        this.idSessao = idSessao;
+        this.filme = filme;
+        this.sala = sala;
+        this.dataI = dataI;
+        this.dataF = dataF;
+        this.horario = horario;
     }
 
     @Override
@@ -79,15 +102,7 @@ public class Sessoes {
         this.filme = filme;
     }
 
-    public Sessoes(int idSessao, Filme filme, Sala sala, Date dataI, Date dataF, String horario) {
-        this.idSessao = idSessao;
-        this.filme = filme;
-        this.sala = sala;
-        this.dataI = dataI;
-        this.dataF = dataF;
-        this.horario = horario;
-    }
-
+   
     public Date getDataI() {
         return dataI;
     }
@@ -128,17 +143,9 @@ public class Sessoes {
         this.sala = sala;
     }
 
-    public String getHorario() {
-        return horario;
-    }
 
-    public void setHorario(String horario) {
-        this.horario = horario;
-    }
 
-    @Override
-    public String toString() {
-        return horario;
-    }
+
+   
 
 }
