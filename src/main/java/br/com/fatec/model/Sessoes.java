@@ -5,7 +5,7 @@
 package br.com.fatec.model;
 
 import br.com.fatec.App;
-import br.com.fatec.controller.GerenciarSessõesController;
+import br.com.fatec.controller.GerenciarSessoesController;
 import br.com.fatec.controller.LoginAdmController;
 import static br.com.fatec.model.Administrador.setStage;
 import java.io.IOException;
@@ -33,17 +33,26 @@ public class Sessoes {
     }
 
     
+<<<<<<< HEAD
 
+=======
+              
+>>>>>>> a422c19d360670cf20fd997f77d47f420b1f81fe
     public void start(Stage tela) throws IOException {
         setStage(tela);
 
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("view/GerenciarSessões.fxml"));
         Parent root = fxmlLoader.load();
-        GerenciarSessõesController controller = fxmlLoader.getController();
+        GerenciarSessoesController controller = fxmlLoader.getController();
         controller.setDadoPassado("Funcionou");
 
+<<<<<<< HEAD
         Scene scene = new Scene(root, 640, 480);
 
+=======
+        Scene scene = new Scene(root);
+        
+>>>>>>> a422c19d360670cf20fd997f77d47f420b1f81fe
         tela.setScene(scene);
         tela.show();
     }
