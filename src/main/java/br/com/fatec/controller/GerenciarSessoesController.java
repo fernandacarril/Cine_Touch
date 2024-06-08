@@ -25,7 +25,6 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
 /**
@@ -61,14 +60,12 @@ public class GerenciarSessoesController implements Initializable {
     private Label lblDataF;
     @FXML
     private DatePicker dtDataF;
- 
     @FXML
     private Button btnGravar;
     @FXML
     private Button btnExcluir;
     @FXML
     private Button btnVoltar;
-
     private String dadoPassado;
     @FXML
     private Button btnVisualizarSessoes;

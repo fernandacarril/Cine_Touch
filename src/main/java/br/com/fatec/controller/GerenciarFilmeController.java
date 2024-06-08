@@ -20,6 +20,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 
 /**
@@ -103,6 +104,18 @@ public class GerenciarFilmeController implements Initializable {
     */
     private Filme carregar_Model(){
         Filme model = new Filme();
+        model.setIdFilme(cbId.getValue().getIdFilme());
+        model.setNomeFilme(txtFilme.getText());
+        model.setClassificacao(cbClass.getValue());
+        model.setDuracao(txtTempo.getText());
+        model.setGenero(txtGenero.getText());
+        model.setSinopse(txtSinopse.getText());
+        
+        return model;
+        
+    }
+    private Filme carregar_Model_insere(){
+        Filme model = new Filme();
         model.setNomeFilme(txtFilme.getText());
         model.setClassificacao(cbClass.getValue());
         model.setDuracao(txtTempo.getText());
@@ -118,6 +131,14 @@ public class GerenciarFilmeController implements Initializable {
     
 */  
     private void carregar_View(Filme model){
+        int idFilmeSelecionado = model.getIdFilme();
+        for (Filme filme : cbId.getItems()) {
+            if (filme.getIdFilme() == idFilmeSelecionado) {
+            // Define o Filme selecionado na ComboBox
+            cbId.setValue(filme);
+            break; // Interrompe o loop após encontrar o Filme correspondente
+            }
+        }
        txtFilme.setText(model.getNomeFilme());
        cbClass.setValue(model.getClassificacao());
        txtTempo.setText(model.getDuracao());
@@ -192,10 +213,11 @@ public class GerenciarFilmeController implements Initializable {
         }
         
         //move dados da tela para model
-        filme = carregar_Model();
+        
         
         try {
             if(incluindo) { //se a operação geral é de inclusão
+                filme = carregar_Model_insere();
                 if(filmeDAO.insere(filme)) {
                     mensagem("Filme incluido com sucesso!!");
                     cbId.requestFocus();
@@ -205,6 +227,7 @@ public class GerenciarFilmeController implements Initializable {
                 }
             }
             else { //alterando
+                filme = carregar_Model();
                 if(filmeDAO.altera(filme)) {
                     mensagem("Filme alterado com sucesso!!!");
                     cbId.requestFocus();
@@ -248,6 +271,8 @@ public class GerenciarFilmeController implements Initializable {
 
     @FXML
     private void btnVoltar_Click(ActionEvent event) {
+        Stage stage = (Stage) btnVoltar.getScene().getWindow();
+        stage.close();
     }
 
     @FXML

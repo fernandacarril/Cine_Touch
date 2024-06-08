@@ -83,7 +83,7 @@ public class FilmeDAO implements DAO<Filme> {
     @Override
     public boolean altera(Filme model) throws SQLException {
         String sql = "UPDATE filme SET nomeFilme = ?,  duracao= ?, "
-                + "classificacao = ? WHERE genero = ?;";
+                + "classificacao = ?, sinopse = ?, genero = ? WHERE idFilme =? ;";
 
         //Abre a conexao
         Banco.conectar();
@@ -98,6 +98,7 @@ public class FilmeDAO implements DAO<Filme> {
         pst.setString(3, model.getClassificacao());
         pst.setString(4, model.getSinopse());
         pst.setString(5, model.getGenero());
+        pst.setInt(6, model.getIdFilme());
         //executa o comando
         if (pst.executeUpdate() >= 1) { //tudo certo
             Banco.desconectar();
