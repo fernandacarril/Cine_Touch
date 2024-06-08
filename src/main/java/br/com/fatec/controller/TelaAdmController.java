@@ -18,6 +18,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 
 /**
@@ -80,7 +81,14 @@ public class TelaAdmController implements Initializable {
             e.printStackTrace();
         }
     }
+
+    private void handleSelection(MouseEvent t) {
+    String selectedItem = lvMenu.getSelectionModel().getSelectedItem();
+        if (selectedItem != null && viewMap.containsKey(selectedItem)) {
+            loadView(viewMap.get(selectedItem));
+        }
+    }
 }
     
  
-}
+

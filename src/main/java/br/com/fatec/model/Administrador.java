@@ -5,6 +5,7 @@
 package br.com.fatec.model;
 
 import br.com.fatec.App;
+import br.com.fatec.controller.GerenciarFilmeController;
 import br.com.fatec.controller.LoginAdmController;
 import br.com.fatec.controller.TelaAdmController;
 import java.io.IOException;
@@ -52,8 +53,8 @@ public class Administrador extends Usuario  {
         
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("view/LoginAdm.fxml"));
         Parent root = fxmlLoader.load();
-        LoginAdmController controler = fxmlLoader.getController();
-        controler.setDadoPassado("Funcionou");
+        LoginAdmController controller = fxmlLoader.getController();
+        controller.setDadoPassado("Funcionou");
 
         Scene scene = new Scene(root);
         
@@ -66,8 +67,8 @@ public class Administrador extends Usuario  {
         
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("view/GerenciarFilme.fxml"));
         Parent root = fxmlLoader.load();
-        LoginAdmController controler = fxmlLoader.getController();
-        controler.setDadoPassado("Funcionou");
+        GerenciarFilmeController controller = fxmlLoader.getController();
+        controller.setDadoPassado("Funcionou");
 
         Scene scene = new Scene(root, 640, 480);
         

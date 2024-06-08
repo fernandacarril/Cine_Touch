@@ -32,12 +32,7 @@ public class Sessoes {
     public Sessoes() {
     }
 
-    
-<<<<<<< HEAD
-
-=======
-              
->>>>>>> a422c19d360670cf20fd997f77d47f420b1f81fe
+   
     public void start(Stage tela) throws IOException {
         setStage(tela);
 
@@ -46,13 +41,10 @@ public class Sessoes {
         GerenciarSessoesController controller = fxmlLoader.getController();
         controller.setDadoPassado("Funcionou");
 
-<<<<<<< HEAD
-        Scene scene = new Scene(root, 640, 480);
 
-=======
-        Scene scene = new Scene(root);
-        
->>>>>>> a422c19d360670cf20fd997f77d47f420b1f81fe
+        Scene scene = new Scene(root, 640, 480);
+ 
+
         tela.setScene(scene);
         tela.show();
     }

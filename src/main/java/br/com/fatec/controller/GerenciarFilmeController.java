@@ -52,6 +52,17 @@ public class GerenciarFilmeController implements Initializable {
     @FXML
     private TextField txtSinopse;
 
+    private String dadoPassado;
+    
+    public String getDadoPassado() {
+        return dadoPassado;
+    }
+
+    public void setDadoPassado(String dadoPassado) {
+        this.dadoPassado = dadoPassado;
+    }
+    
+    
     /**
      * Initializes the controller class.
      */
