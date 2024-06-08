@@ -1,4 +1,4 @@
-package br.com.fatec;
+    package br.com.fatec;
 
 import br.com.fatec.DAO.FilmeDAO;
 import br.com.fatec.persistencia.Banco;
@@ -7,7 +7,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 import java.sql.SQLException;
 

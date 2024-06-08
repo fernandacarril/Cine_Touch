@@ -51,7 +51,8 @@ public class TelaInicialController implements Initializable {
     private void btnAdmin_Click(ActionEvent event) throws Exception {
         System.out.println("btn ADM");
         Administrador adm = new Administrador(1, "nome", "senha");
-        adm.start(new Stage());
+        adm.start2( new Stage());
+        
     }
 
     @FXML

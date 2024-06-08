@@ -251,19 +251,18 @@ public class GerenciarSessõesController implements Initializable {
     }
 
     private boolean validarDados() {
-    if (txtId.getText().length() == 0
-            || txtIdFilme.getText().length() == 0
-            || cbFilme.getSelectionModel().isEmpty()
-            || txtSala.getText().length() == 0
-            || dtDataI.getValue() == null
-            || dtDataF.getValue() == null
-            || cbHorario.getSelectionModel().isEmpty()) {
-        return false;
-    } else {
-        return true;
+        if (txtId.getText().length() == 0
+                || txtIdFilme.getText().length() == 0
+                || cbFilme.getSelectionModel().isEmpty()
+                || txtSala.getText().length() == 0
+                || dtDataI.getValue() == null
+                || dtDataF.getValue() == null
+                || cbHorario.getSelectionModel().isEmpty()) {
+            return false;
+        } else {
+            return true;
+        }
     }
-}
-
 
     private void limparCampos() {
         txtIdFilme.setText("");

@@ -46,6 +46,22 @@ public class Administrador extends Usuario  {
         tela.show();        
     }
     
+    public void start2 (Stage tela) throws IOException {
+        setStage(tela);
+        
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("view/GerenciarFilme.fxml"));
+        Parent root = fxmlLoader.load();
+        LoginAdmController controler = fxmlLoader.getController();
+        controler.setDadoPassado("Funcionou");
+
+        Scene scene = new Scene(root, 640, 480);
+        
+        tela.setScene(scene);
+        tela.show();        
+    }
+    
+    
+    
     public static void setStage(Stage t) {
         tela = t;
     }

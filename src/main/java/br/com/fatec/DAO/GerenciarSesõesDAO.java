@@ -12,6 +12,7 @@ import br.com.fatec.persistencia.Banco;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -29,8 +30,9 @@ public class GerenciarSesõesDAO implements DAO<Sessoes> {
     private ResultSet rs; //pacote java.sql 
 
     @Override
+
     public boolean insere(Sessoes model) throws SQLException {
-        String sql = "INSERT INTO Sessao (idSessao, dataInicio, dataFim, horario, numeroSala, idFilme ) "
+        String sql = "INSERT INTO sessao (idSessao, dataInicio, dataFim, horario, numeroSala, idFilme ) "
                 + "VALUES (?, ?, ?, ?, ?, ?);";
 
         //Abre a conexao
@@ -42,11 +44,24 @@ public class GerenciarSesõesDAO implements DAO<Sessoes> {
         //coloca os valores dentro do comando
         //substitui as '?' por dados
         pst.setInt(1, model.getIdSessao());
-        pst.setString(2, model.getDataI());
-        pst.setString(3, model.getDataF());
+
+        // Definindo um valor mínimo para data de início se for nula
+        if (model.getDataI() == null) {
+            pst.setDate(2, java.sql.Date.valueOf(LocalDate.MIN));
+        } else {
+            pst.setDate(2, model.getDataI());
+        }
+
+        // Definindo um valor mínimo para data de fim se for nula
+        if (model.getDataF() == null) {
+            pst.setDate(3, java.sql.Date.valueOf(LocalDate.MIN));
+        } else {
+            pst.setDate(3, model.getDataF());
+        }
+
         pst.setString(4, model.getHorario());
         pst.setInt(5, model.getSala().getNumeroSala());
-        pst.setInt(5, model.getFilme().getIdFilme());
+        pst.setInt(6, model.getFilme().getIdFilme());
 
         //executa o comando
         if (pst.executeUpdate() >= 1) { //tudo certo
@@ -60,7 +75,7 @@ public class GerenciarSesõesDAO implements DAO<Sessoes> {
 
     @Override
     public boolean remove(Sessoes model) throws SQLException {
-        String sql = "DELETE FROM Sessao WHERE idSessao = ?;";
+        String sql = "DELETE FROM sessao WHERE idSessao = ?;";
 
         //Abre a conexao
         Banco.conectar();
@@ -97,8 +112,8 @@ public class GerenciarSesõesDAO implements DAO<Sessoes> {
         //substitui as '?' por dados
         pst = Banco.obterConexao().prepareStatement(sql);
         pst.setInt(1, model.getFilme().getIdFilme());
-        pst.setString(2, model.getDataI());
-        pst.setString(3, model.getDataF());
+        pst.setString(2, model.getDataI().toString()); // Convertendo LocalDate para String
+        pst.setString(3, model.getDataF().toString()); // Convertendo LocalDate para String
         pst.setString(4, model.getHorario());
         pst.setInt(5, model.getSala().getNumeroSala());
         pst.setInt(6, model.getIdSessao());
@@ -113,10 +128,11 @@ public class GerenciarSesõesDAO implements DAO<Sessoes> {
         }
     }
 
+    @Override
     public Sessoes buscaID(Sessoes model) throws SQLException {
         sessoes = null;
         //Comando SELECT
-        String sql = "SELECT * FROM Sessoes WHERE idSessao = ?;";
+        String sql = "SELECT * FROM sessao WHERE idSessao = ?;";
 
         //conecta ao banco
         Banco.conectar();
@@ -143,8 +159,8 @@ public class GerenciarSesõesDAO implements DAO<Sessoes> {
             sessoes.setFilme(filme);
 
             // Configura as outras propriedades de sessoes
-            sessoes.setDataI(rs.getString("dataInicio"));
-            sessoes.setDataF(rs.getString("dataFim"));
+            sessoes.setDataI(rs.getDate("dataInicio"));
+            sessoes.setDataF(rs.getDate("dataFim"));
             sessoes.setHorario(rs.getString("horario"));
 
             // Configura a sala (supondo que você tenha um objeto Sala)
@@ -167,7 +183,7 @@ public class GerenciarSesõesDAO implements DAO<Sessoes> {
 
         sessoes = null;
         //Comando SELECT
-        String sql = "SELECT * FROM Veiculo ";
+        String sql = "SELECT * FROM sessao ";
         //colocar filtro ou nao
         if (criterio.length() != 0) {
             sql += "WHERE " + criterio;
@@ -193,8 +209,8 @@ public class GerenciarSesõesDAO implements DAO<Sessoes> {
             sessoes.setFilme(filme);
 
             // Configura as outras propriedades de sessoes
-            sessoes.setDataI(rs.getString("dataInicio"));
-            sessoes.setDataF(rs.getString("dataFim"));
+            sessoes.setDataI(rs.getDate("dataInicio"));
+            sessoes.setDataF(rs.getDate("dataFim"));
             sessoes.setHorario(rs.getString("horario"));
 
             // Configura a sala (supondo que você tenha um objeto Sala)

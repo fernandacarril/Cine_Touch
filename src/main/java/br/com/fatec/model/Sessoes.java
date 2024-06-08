@@ -9,6 +9,8 @@ import br.com.fatec.controller.GerenciarSessõesController;
 import br.com.fatec.controller.LoginAdmController;
 import static br.com.fatec.model.Administrador.setStage;
 import java.io.IOException;
+import java.sql.Date;
+import java.time.LocalDate;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -19,32 +21,33 @@ import javafx.stage.Stage;
  * @author Fernanda
  */
 public class Sessoes {
+
     private int idSessao;
     private Filme filme;
     private Sala sala;
-    private String dataI, dataF;
+    private Date dataI;
+    private Date dataF;
     private String horario;
 
     public Sessoes() {
     }
+
     
-      public void start(Stage tela) throws IOException {
+
+    public void start(Stage tela) throws IOException {
         setStage(tela);
-        
+
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("view/GerenciarSessões.fxml"));
         Parent root = fxmlLoader.load();
         GerenciarSessõesController controller = fxmlLoader.getController();
         controller.setDadoPassado("Funcionou");
 
         Scene scene = new Scene(root, 640, 480);
-        
+
         tela.setScene(scene);
-        tela.show();        
+        tela.show();
     }
 
-    
-    
-    
     @Override
     public int hashCode() {
         int hash = 7;
@@ -67,18 +70,33 @@ public class Sessoes {
         return this.idSessao == other.idSessao;
     }
 
-    
     public Sessoes(Filme filme) {
         this.filme = filme;
     }
-    
-    public Sessoes(int idSessao, Filme filme, Sala sala, String dataI, String dataF, String horario) {
+
+    public Sessoes(int idSessao, Filme filme, Sala sala, Date dataI, Date dataF, String horario) {
         this.idSessao = idSessao;
         this.filme = filme;
         this.sala = sala;
         this.dataI = dataI;
         this.dataF = dataF;
         this.horario = horario;
+    }
+
+    public Date getDataI() {
+        return dataI;
+    }
+
+    public void setDataI(Date dataI) {
+        this.dataI = dataI;
+    }
+
+    public Date getDataF() {
+        return dataF;
+    }
+
+    public void setDataF(Date dataF) {
+        this.dataF = dataF;
     }
 
     public int getIdSessao() {
@@ -105,22 +123,6 @@ public class Sessoes {
         this.sala = sala;
     }
 
-    public String getDataI() {
-        return dataI;
-    }
-
-    public void setDataI(String dataI) {
-        this.dataI = dataI;
-    }
-
-    public String getDataF() {
-        return dataF;
-    }
-
-    public void setDataF(String dataF) {
-        this.dataF = dataF;
-    }
-
     public String getHorario() {
         return horario;
     }
@@ -133,5 +135,5 @@ public class Sessoes {
     public String toString() {
         return horario;
     }
-    
+
 }
