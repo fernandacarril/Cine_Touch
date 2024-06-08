@@ -17,9 +17,9 @@
    <children>
       <HBox layoutX="31.0" layoutY="299.0" prefHeight="68.0" prefWidth="538.0" spacing="25.0">
          <children>
-            <Button fx:id="btnGravar" maxHeight="60.0" mnemonicParsing="false" prefWidth="180.0" text="Gravar" />
-            <Button fx:id="btnExcluir" maxHeight="60.0" mnemonicParsing="false" prefWidth="180.0" text="Excluir" />
-            <Button fx:id="btnVoltar" maxHeight="60.0" mnemonicParsing="false" prefWidth="180.0" text="Voltar" />
+            <Button fx:id="btnGravar" maxHeight="60.0" mnemonicParsing="false" onAction="#btnGravar_Click" prefWidth="180.0" text="Gravar" />
+            <Button fx:id="btnExcluir" maxHeight="60.0" mnemonicParsing="false" onAction="#btnExcluir_Click" prefWidth="180.0" text="Excluir" />
+            <Button fx:id="btnVoltar" maxHeight="60.0" mnemonicParsing="false" onAction="#btnVoltar_Click" prefWidth="180.0" text="Voltar" />
          </children>
          <padding>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />

@@ -131,13 +131,12 @@ public class FilmeDAO implements DAO<Filme> {
 
             //cria o objeto filme
             filme = new Filme();
-            //move os dados do resultSet para o objeto veiculo
             filme.setIdFilme(rs.getInt("idFilme"));
             filme.setNomeFilme(rs.getString("nomeFilme"));
             filme.setDuracao(rs.getString("duracao"));
             filme.setClassificacao(rs.getString("classificacao"));
             filme.setSinopse(rs.getString("sinopse"));
-            filme.setClassificacao(rs.getString("genero"));
+            filme.setGenero(rs.getString("genero"));
         }
 
         Banco.desconectar();
@@ -178,7 +177,7 @@ public class FilmeDAO implements DAO<Filme> {
             filme.setDuracao(rs.getString("duracao"));
             filme.setClassificacao(rs.getString("classificacao"));
             filme.setSinopse(rs.getString("sinopse"));
-            filme.setClassificacao(rs.getString("genero"));
+            filme.setGenero(rs.getString("genero"));
 
             //adicionar na coleção
             listagem.add(filme);

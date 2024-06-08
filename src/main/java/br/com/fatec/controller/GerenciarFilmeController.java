@@ -142,11 +142,107 @@ public class GerenciarFilmeController implements Initializable {
                     cbId.getValue().getNomeFilme()));
             cbClass.setValue(String.valueOf(
                     cbId.getValue().getClassificacao()));
-            txtTempo.setText(dadoPassado);
+            txtTempo.setText(String.valueOf(
+                    cbId.getValue().getDuracao()));
+            txtGenero.setText(String.valueOf(
+                    cbId.getValue().getGenero()));
+            txtSinopse.setText(String.valueOf(
+                    cbId.getValue().getSinopse()));
         }
         else {
             txtFilme.setText("");
         }
+    }
+    private boolean validarDados() {
+        if(txtFilme.getText().length() == 0 ||
+                cbClass.getSelectionModel().isEmpty() ||
+                txtTempo.getText().length() == 0 ||
+                txtGenero.getText().length() == 0 || 
+                txtSinopse.getText().length() == 0){
+            return false;
+        }
+        else
+            return true;
+    }
+    private void limparCampos() {
+        cbId.getSelectionModel().clearSelection();
+        txtFilme.setText("");
+        cbClass.getSelectionModel().clearSelection();
+        txtTempo.setText("");
+        txtGenero.setText("");
+        txtSinopse.setText("");
+        
+        //manda o foco para a placa do veículoi
+        cbId.requestFocus();
+    }
+    private void habilitarInclusao(boolean inc) {
+        btnExcluir.setDisable(inc);
+    }
+
+    @FXML
+    private void btnGravar_Click(ActionEvent event) {
+        //verificar se dados estão OK
+        if(!validarDados()) {
+            mensagem("Por favor preencha todos os campos");
+            return; //sai fora do método
+        }
+        
+        //move dados da tela para model
+        filme = carregar_Model();
+        
+        try {
+            if(incluindo) { //se a operação geral é de inclusão
+                if(filmeDAO.insere(filme)) {
+                    mensagem("Filme incluido com sucesso!!");
+                    cbId.requestFocus();
+                }
+                else {
+                    mensagem("Erro na Inclusão");
+                }
+            }
+            else { //alterando
+                if(filmeDAO.altera(filme)) {
+                    mensagem("Filme alterado com sucesso!!!");
+                    cbId.requestFocus();
+                }
+                else {
+                    mensagem("Erro na Alteração");
+                }
+            }
+        }
+        catch (SQLException ex) {
+            mensagem("Erro na Inclusão\n" + ex.getMessage());
+        }
+        
+        //tudo certo, vamos incluir um veiculo novo
+        limparCampos();
+        habilitarInclusao(true);
+    }
+
+    @FXML
+    private void btnExcluir_Click(ActionEvent event) {
+        filme = new Filme();
+        filme.setIdFilme(Integer.parseInt(cbId.getValue()));
+        
+        try {
+            if(filmeDAO.remove(filme)) {
+                mensagem("Filme excluído com Sucesso !!!");
+                cbId.requestFocus();
+            } 
+            else {
+                mensagem("Filme algum erro para exclusão");
+            }
+        } catch (SQLException ex) {
+            mensagem("Erro de Exclusão\n" + ex.getMessage());
+        }
+        
+        //tudo certo, vamos incluir um veiculo novo
+        limparCampos();
+        habilitarInclusao(true);
+    }
+
+    @FXML
+    private void btnVoltar_Click(ActionEvent event) {
     }
     
 
