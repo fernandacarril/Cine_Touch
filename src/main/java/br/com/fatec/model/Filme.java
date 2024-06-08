@@ -4,6 +4,15 @@
  */
 package br.com.fatec.model;
 
+import br.com.fatec.App;
+import br.com.fatec.controller.GerenciarFilmeController;
+import static br.com.fatec.model.Administrador.setStage;
+import java.io.IOException;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+
 /**
  *
  * @author Fernanda
@@ -14,9 +23,25 @@ public class Filme {
     private String genero;
     private String classificacao;
 
+    
+    
+    public void start(Stage tela) throws IOException {
+        setStage(tela);
+        
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("view/GerenciarFilme.fxml"));
+        Parent root = fxmlLoader.load();
+        GerenciarFilmeController controller = fxmlLoader.getController();
+        controller.setDadoPassado("Funcionou");
+
+        Scene scene = new Scene(root);
+        
+        tela.setScene(scene);
+        tela.show();
+    }
+
     @Override
     public String toString() {
-        return getNomeFilme();
+        return String.valueOf(getIdFilme());
     }
     
     
