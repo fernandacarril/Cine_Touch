@@ -67,28 +67,15 @@ public class GerenciarFilmeController implements Initializable {
         return dadoPassado;
     }
 
-<<<<<<< Updated upstream
-    private String dadoPassado;
-    
-    public String getDadoPassado() {
-        return dadoPassado;
-    }
-
-=======
->>>>>>> Stashed changes
     public void setDadoPassado(String dadoPassado) {
         this.dadoPassado = dadoPassado;
     }
-    
-<<<<<<< Updated upstream
-    
-=======
+
     private FilmeDAO filmeDAO = new FilmeDAO();
     private Filme filme; //model para a tela
     private ObservableList<Filme> listaFilme =  
             FXCollections.observableArrayList();
     private boolean incluindo = true;
->>>>>>> Stashed changes
     /**
      * Initializes the controller class.
      */
@@ -107,16 +94,7 @@ public class GerenciarFilmeController implements Initializable {
         alerta.showAndWait(); //exibe a mensage
     }
 
-    private void cbId_Change(ActionEvent event) {
-        if(cbId.getValue() != null) {
-            txtFilme.setText(
-                    cbId.getValue().getNomeFilme());
-        }
-        else {
-            txtFilme.setText("");
-        }
-
-    }
+    
     /*
     * Carrega os dados que estão na tela para o Model
     */

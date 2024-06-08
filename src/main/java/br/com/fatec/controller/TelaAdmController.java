@@ -100,14 +100,6 @@ public class TelaAdmController implements Initializable {
         f.start(new Stage());
     }
 
-<<<<<<< Updated upstream
-    private void handleSelection(MouseEvent t) {
-    String selectedItem = lvMenu.getSelectionModel().getSelectedItem();
-        if (selectedItem != null && viewMap.containsKey(selectedItem)) {
-            loadView(viewMap.get(selectedItem));
-        }
-    }
-=======
     // Método chamado ao clicar no item "Gerenciar Sessões"
     private void handleGerenciarSessoes() throws IOException{
         Sessoes s = new Sessoes();
@@ -120,7 +112,6 @@ public class TelaAdmController implements Initializable {
         Sessoes s = new Sessoes();
         s.start(new Stage());
     }*/
->>>>>>> Stashed changes
 }
     
  
