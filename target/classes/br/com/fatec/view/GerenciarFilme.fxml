@@ -76,6 +76,6 @@
             <Font size="14.0" />
          </font>
       </TextField>
-      <ComboBox fx:id="cbId" layoutX="83.0" layoutY="82.0" prefHeight="28.0" prefWidth="56.0" />
+      <ComboBox fx:id="cbId" layoutX="83.0" layoutY="82.0" onAction="#cbId_Change" prefHeight="28.0" prefWidth="56.0" />
    </children>
 </AnchorPane>

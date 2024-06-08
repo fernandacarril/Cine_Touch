@@ -10,7 +10,6 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.Collection;
 import java.util.ResourceBundle;
-import java.util.Set;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -82,7 +81,7 @@ public class GerenciarFilmeController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        carregar_Combo();
+        carregar_Combo_ID();
     }   
     
     private void mensagem(String msg) {
@@ -122,7 +121,7 @@ public class GerenciarFilmeController implements Initializable {
        txtSinopse.setText(model.getSinopse());
     }
     
-    private void carregar_Combo() {
+    private void carregar_Combo_ID() {
         FilmeDAO filmeDao = new FilmeDAO();
         try {
             //busca todos os registros no banco para uma Coleção
@@ -135,5 +134,17 @@ public class GerenciarFilmeController implements Initializable {
             mensagem(ex.getMessage());
         }
     }
+
+    @FXML
+    private void cbId_Change(ActionEvent event) {
+        if(cbId.getValue() != null) {
+            txtFilme.setText(String.valueOf(
+                    cbId.getValue().getNomeFilme()));
+        }
+        else {
+            txtFilme.setText("");
+        }
+    }
+    
 
 }
