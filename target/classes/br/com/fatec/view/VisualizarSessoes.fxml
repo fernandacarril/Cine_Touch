@@ -7,12 +7,12 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21" fx:controller="br.com.fatec.controller.VisualizarSessoesController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.fatec.controller.VisualizarSessoesController">
     <stylesheets>
         <URL value="@/br/com/fatec/css/visualizarsessoes.css" />
     </stylesheets>
    <children>
-      <TableView fx:id="tvSessoes" layoutX="28.0" layoutY="68.0" prefHeight="303.0" prefWidth="549.0">
+      <TableView fx:id="tvSessoes" layoutX="28.0" layoutY="113.0" prefHeight="258.0" prefWidth="550.0">
         <columns>
           <TableColumn prefWidth="75.0" text="C1" />
           <TableColumn prefWidth="75.0" text="C2" />

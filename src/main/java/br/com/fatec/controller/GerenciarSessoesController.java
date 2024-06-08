@@ -9,6 +9,7 @@ import br.com.fatec.DAO.SessoesDAO;
 import br.com.fatec.model.Filme;
 import br.com.fatec.model.Sala;
 import br.com.fatec.model.Sessoes;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.Collection;
@@ -25,6 +26,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -179,7 +181,9 @@ public class GerenciarSessoesController implements Initializable {
     }
 
     @FXML
-    private void btnVisualizarSessoes_Click(ActionEvent event) {
+    private void btnVisualizarSessoes_Click(ActionEvent event) throws IOException {
+        Sessoes s = new Sessoes();
+        s.startVer(new Stage());
     }
 
     private Sessoes carregar_Model() {

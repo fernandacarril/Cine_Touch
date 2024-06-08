@@ -222,7 +222,7 @@ public class GerenciarFilmeController implements Initializable {
     @FXML
     private void btnExcluir_Click(ActionEvent event) {
         filme = new Filme();
-        filme.setIdFilme(Integer.parseInt(cbId.getValue()));
+        //filme.setIdFilme(Integer.parseInt(cbId.getValue()));
         
         try {
             if(filmeDAO.remove(filme)) {
