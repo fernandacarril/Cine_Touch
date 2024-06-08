@@ -68,7 +68,7 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <DatePicker fx:id="dtDataF" layoutX="405.0" layoutY="212.0" prefHeight="28.0" prefWidth="166.0" />
+      <DatePicker fx:id="dtDataF" layoutX="405.0" layoutY="212.0" onAction="#dtDataF_Text_Changed" prefHeight="28.0" prefWidth="166.0" />
       <HBox layoutX="41.0" layoutY="309.0" prefHeight="68.0" prefWidth="538.0" spacing="25.0">
          <children>
             <Button fx:id="btnGravar" maxHeight="60.0" mnemonicParsing="false" onAction="#btnGravar_Click" prefWidth="180.0" text="Gravar" />

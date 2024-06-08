@@ -61,7 +61,7 @@ public class GerenciarSessoesController implements Initializable {
     private Label lblDataF;
     @FXML
     private DatePicker dtDataF;
-    private ComboBox<Sessoes> cbHorario;
+ 
     @FXML
     private Button btnGravar;
     @FXML
@@ -86,6 +86,7 @@ public class GerenciarSessoesController implements Initializable {
     //variaveis auxiliares 
     private SessoesDAO SessoesDAO = new SessoesDAO();
     private Sessoes sessoes; ///model para 
+    private Filme filme;
     private ObservableList<Filme> listafilme
             = FXCollections.observableArrayList();
     private ObservableList<Sessoes> listahorario
@@ -271,6 +272,11 @@ public class GerenciarSessoesController implements Initializable {
 
     @FXML
     private void btnVoltar_Click(ActionEvent event) {
+    }
+
+    @FXML
+    private void dtDataF_Text_Changed(ActionEvent event) {
+        System.out.println("teste");
     }
 
     
