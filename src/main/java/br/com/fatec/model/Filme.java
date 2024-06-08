@@ -128,6 +128,9 @@ public class Filme {
         this.sinopse = sinopse;
     }
     
-    
+	public String toString(){
+		return "" + this.idFilme;
+	}  
+		
     
 }
