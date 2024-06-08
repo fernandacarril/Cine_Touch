@@ -88,6 +88,11 @@ public class TelaAdmController implements Initializable {
             loadView(viewMap.get(selectedItem));
         }
     }
+
+    @FXML
+    private void lvMenu_Cliked(MouseEvent event) {
+        System.out.println("Teste teste");
+    }
 }
     
  
