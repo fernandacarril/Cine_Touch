@@ -6,7 +6,6 @@ package br.com.fatec.model;
 
 import br.com.fatec.App;
 import br.com.fatec.controller.GerenciarSessoesController;
-import br.com.fatec.controller.LoginAdmController;
 import static br.com.fatec.model.Administrador.setStage;
 import java.io.IOException;
 import java.sql.Date;
@@ -35,8 +34,7 @@ public class Sessoes {
    
     public void start(Stage tela) throws IOException {
         setStage(tela);
-
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("view/GerenciarSessões.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("view/GerenciarSessões.fxml"));   
         Parent root = fxmlLoader.load();
         GerenciarSessoesController controller = fxmlLoader.getController();
         controller.setDadoPassado("Funcionou");

@@ -14,7 +14,10 @@
         <URL value="@/br/com/fatec/css/telaadm.css" />
     </stylesheets>
    <children>
+<<<<<<< HEAD
       <ListView fx:id="lvMenu" onMouseClicked="#lvMenu_Cliked" prefHeight="400.0" prefWidth="161.0" />
+=======
+>>>>>>> c3ab66656aff961a6e616e1c1fb8ff7c30c83beb
       <ImageView fx:id="imgLogo" fitHeight="330.0" fitWidth="421.0" layoutX="176.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@images/imgLogo.png" />
@@ -27,6 +30,13 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
+<<<<<<< HEAD
       <Pane fx:id="pnMenu" layoutX="72.0" layoutY="85.0" prefHeight="218.0" prefWidth="161.0" />
+=======
+      <Pane fx:id="pnMenu" layoutX="13.0" layoutY="84.0" prefHeight="218.0" prefWidth="136.0">
+         <children>
+            <ListView fx:id="lvMenu" layoutY="9.0" prefHeight="201.0" prefWidth="136.0" />
+         </children></Pane>
+>>>>>>> c3ab66656aff961a6e616e1c1fb8ff7c30c83beb
    </children>
 </AnchorPane>

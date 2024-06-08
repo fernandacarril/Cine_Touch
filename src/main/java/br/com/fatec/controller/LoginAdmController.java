@@ -29,7 +29,7 @@ import javafx.stage.Stage;
  * @author Fernanda
  */
 public class LoginAdmController implements Initializable {
-
+    private String senha;
     @FXML
     private TextField txtUsuario;
 
@@ -81,8 +81,7 @@ public class LoginAdmController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        //     
-
+        
     }
 
     @FXML
