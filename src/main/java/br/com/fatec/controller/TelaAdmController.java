@@ -100,11 +100,22 @@ public class TelaAdmController implements Initializable {
         f.start(new Stage());
     }
 
+<<<<<<< Updated upstream
     // Método chamado ao clicar no item "Gerenciar Sessões"
     private void handleGerenciarSessoes() throws IOException{
         Sessoes s = new Sessoes();
         s.start(new Stage());
+=======
+<<<<<<< HEAD
+<<<<<<< Updated upstream
+    private void handleSelection(MouseEvent t) {
+    String selectedItem = lvMenu.getSelectionModel().getSelectedItem();
+        if (selectedItem != null && viewMap.containsKey(selectedItem)) {
+            loadView(viewMap.get(selectedItem));
+        }
+>>>>>>> Stashed changes
     }
+<<<<<<< HEAD
 
 <<<<<<< HEAD
     @FXML
@@ -112,12 +123,31 @@ public class TelaAdmController implements Initializable {
         System.out.println("Teste teste");
     }
 =======
+<<<<<<< Updated upstream
+=======
+=======
+=======
+>>>>>>> c3ab66656aff961a6e616e1c1fb8ff7c30c83beb
+    // Método chamado ao clicar no item "Gerenciar Sessões"
+    private void handleGerenciarSessoes() throws IOException{
+        Sessoes s = new Sessoes();
+        s.start(new Stage());
+    }
+
+>>>>>>> Stashed changes
 
     /*@FXML
     private void lvMenu_onClick(MouseEvent event) throws IOException {
         Sessoes s = new Sessoes();
         s.start(new Stage());
     }*/
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+>>>>>>> Stashed changes
+>>>>>>> 171a7637fc44c561fe0d64c8c20e1f3d8f8ed751
+=======
+>>>>>>> Stashed changes
 >>>>>>> c3ab66656aff961a6e616e1c1fb8ff7c30c83beb
 }
     
