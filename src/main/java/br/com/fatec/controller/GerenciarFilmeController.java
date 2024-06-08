@@ -140,6 +140,9 @@ public class GerenciarFilmeController implements Initializable {
         if(cbId.getValue() != null) {
             txtFilme.setText(String.valueOf(
                     cbId.getValue().getNomeFilme()));
+            cbClass.setValue(String.valueOf(
+                    cbId.getValue().getClassificacao()));
+            txtTempo.setText(dadoPassado);
         }
         else {
             txtFilme.setText("");
