@@ -61,6 +61,8 @@ public class GerenciarFilmeController implements Initializable {
     private ComboBox<Filme> cbId;
     
     private String dadoPassado;
+    @FXML
+    private Button btnPesquisar;
     
     public String getDadoPassado() {
         return dadoPassado;
@@ -75,6 +77,8 @@ public class GerenciarFilmeController implements Initializable {
     private ObservableList<Filme> listaFilme =  
             FXCollections.observableArrayList();
     private boolean incluindo = true;
+    private ObservableList<String> listaClass =  
+            FXCollections.observableArrayList("L", "10","12","14","16","18");
     /**
      * Initializes the controller class.
      */
@@ -130,6 +134,7 @@ public class GerenciarFilmeController implements Initializable {
             listaFilme.addAll(listFilm);
             //informa que a combo possui uma lista
             cbId.setItems(listaFilme);
+            cbClass.setItems(listaClass);
         } catch (SQLException ex) {
             mensagem(ex.getMessage());
         }
@@ -172,7 +177,6 @@ public class GerenciarFilmeController implements Initializable {
         txtGenero.setText("");
         txtSinopse.setText("");
         
-        //manda o foco para a placa do veículoi
         cbId.requestFocus();
     }
     private void habilitarInclusao(boolean inc) {
@@ -223,6 +227,7 @@ public class GerenciarFilmeController implements Initializable {
     private void btnExcluir_Click(ActionEvent event) {
         filme = new Filme();
         //filme.setIdFilme(Integer.parseInt(cbId.getValue()));
+        filme.setIdFilme(cbId.getValue().getIdFilme());
         
         try {
             if(filmeDAO.remove(filme)) {
@@ -243,6 +248,32 @@ public class GerenciarFilmeController implements Initializable {
 
     @FXML
     private void btnVoltar_Click(ActionEvent event) {
+    }
+
+    @FXML
+    private void btnPesquisar_Click(ActionEvent event) {
+        filme = new Filme();
+        filme.setNomeFilme(txtFilme.getText());
+        try {
+            //faz a procura
+            filme = filmeDAO.buscaID(filme);
+            
+            //verifica se achou
+            if(filme != null) { //achou
+                carregar_View(filme);
+                incluindo = false;
+                habilitarInclusao(false);
+            }
+            else {
+                mensagem("Filme não encontrado");
+                //envia o foco para o text da placa
+                txtFilme.requestFocus();
+                incluindo = true;
+            }
+        } catch (SQLException ex) {
+            mensagem("Erro na procura do Filme: " + 
+                    ex.getMessage());
+        }
     }
     
 

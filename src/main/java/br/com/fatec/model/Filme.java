@@ -41,7 +41,7 @@ public class Filme {
 
     @Override
     public String toString() {
-        return String.valueOf(getIdFilme());
+        return "" + this.idFilme;
     }
     
     

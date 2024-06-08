@@ -77,5 +77,6 @@
          </font>
       </TextField>
       <ComboBox fx:id="cbId" layoutX="83.0" layoutY="82.0" onAction="#cbId_Change" prefHeight="28.0" prefWidth="56.0" />
+      <Button fx:id="btnPesquisar" layoutX="443.0" layoutY="79.0" mnemonicParsing="false" onAction="#btnPesquisar_Click" prefHeight="116.0" prefWidth="122.0" text="Pesquisar" />
    </children>
 </AnchorPane>
