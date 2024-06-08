@@ -40,7 +40,7 @@ public class FilmeDAO implements DAO<Filme> {
 
         //coloca os valores dentro do comando
         //substitui as '?' por dados
-        pst.setString(1, model.getNomeFilme());
+        pst.setString(1, model.getNomeFilme().toUpperCase());
         pst.setString(2, model.getDuracao());
         pst.setString(3, model.getClassificacao());
         pst.setString(4, model.getSinopse());
@@ -93,7 +93,7 @@ public class FilmeDAO implements DAO<Filme> {
 
         //coloca os valores dentro do comando
         //substitui as '?' por dados
-        pst.setString(1, model.getNomeFilme());
+        pst.setString(1, model.getNomeFilme().toUpperCase());
         pst.setString(2, model.getDuracao());
         pst.setString(3, model.getClassificacao());
         pst.setString(4, model.getSinopse());
@@ -112,7 +112,7 @@ public class FilmeDAO implements DAO<Filme> {
     public Filme buscaID(Filme model) throws SQLException {
         filme = null;
         //Comando SELECT
-        String sql = "SELECT * FROM filme WHERE idFilme = ?;";
+        String sql = "SELECT * FROM filme WHERE nomeFilme = ?;";
 
         //conecta ao banco
         Banco.conectar();
@@ -121,7 +121,7 @@ public class FilmeDAO implements DAO<Filme> {
         pst = Banco.obterConexao().prepareStatement(sql);
 
         //troca a ?
-        pst.setInt(1, model.getIdFilme());
+        pst.setString(1, model.getNomeFilme());
 
         //Executa o comando SELECT
         rs = pst.executeQuery();
