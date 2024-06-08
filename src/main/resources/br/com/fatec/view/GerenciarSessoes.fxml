@@ -69,7 +69,6 @@
          </font>
       </Label>
       <DatePicker fx:id="dtDataF" layoutX="405.0" layoutY="212.0" prefHeight="28.0" prefWidth="166.0" />
-      <ComboBox fx:id="cbHorario" layoutX="110.0" layoutY="253.0" prefHeight="28.0" prefWidth="122.0" />
       <HBox layoutX="41.0" layoutY="309.0" prefHeight="68.0" prefWidth="538.0" spacing="25.0">
          <children>
             <Button fx:id="btnGravar" maxHeight="60.0" mnemonicParsing="false" onAction="#btnGravar_Click" prefWidth="180.0" text="Gravar" />
@@ -81,5 +80,10 @@
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </padding>
       </HBox>
+      <TextField fx:id="txtHoras" layoutX="107.0" layoutY="252.0" prefHeight="30.0" prefWidth="72.0">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </TextField>
    </children>
 </AnchorPane>

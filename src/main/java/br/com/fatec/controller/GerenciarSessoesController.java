@@ -24,6 +24,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 
 /**
  * FXML Controller class
@@ -58,7 +59,6 @@ public class GerenciarSessoesController implements Initializable {
     private Label lblDataF;
     @FXML
     private DatePicker dtDataF;
-    @FXML
     private ComboBox<Sessoes> cbHorario;
     @FXML
     private Button btnGravar;
@@ -70,6 +70,8 @@ public class GerenciarSessoesController implements Initializable {
     private String dadoPassado;
     @FXML
     private Button btnVisualizarSessoes;
+    @FXML
+    private TextField txtHoras;
 
     public String getDadoPassado() {
         return dadoPassado;
@@ -97,7 +99,7 @@ public class GerenciarSessoesController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         carregar_Combo_filme();
-        carregar_Combo_horario();
+        
     }
 
     private void carregar_Combo_filme() {
@@ -115,22 +117,7 @@ public class GerenciarSessoesController implements Initializable {
         }
     }
 
-    private void carregar_Combo_horario() {
-        SessoesDAO gerDao = new SessoesDAO();
-        try {
-            //busca todos os registros no banco para uma Coleção
-            Collection<Sessoes> listhoras = gerDao.listaHoras("");
-            // Limpa a lista existente
-            listahorario.clear();
-            //colocar a lista gerada pela DAO dentro da COMBO
-            listahorario.addAll(listhoras);
-            //informa que a combo possui uma lista
-            cbHorario.setItems(listahorario);
-
-        } catch (SQLException ex) {
-            mensagem(ex.getMessage());
-        }
-    }
+   
 
     @FXML
     private void cbFilme_Change(ActionEvent event) {
@@ -142,7 +129,6 @@ public class GerenciarSessoesController implements Initializable {
         }
     }
 
-    @FXML
     private void mensagem(String msg) {
         Alert alerta = new Alert(Alert.AlertType.INFORMATION);
         alerta.setTitle("Mensagem");
@@ -282,4 +268,6 @@ public class GerenciarSessoesController implements Initializable {
     @FXML
     private void btnVoltar_Click(ActionEvent event) {
     }
+
+    
 }
