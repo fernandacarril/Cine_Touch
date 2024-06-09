@@ -9,6 +9,7 @@ import br.com.fatec.DAO.SessaoDAO;
 import br.com.fatec.model.Filme;
 import br.com.fatec.model.Sala;
 import br.com.fatec.model.Sessoes;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.Collection;
@@ -23,6 +24,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -83,6 +85,7 @@ public class GerenciarSessaoController implements Initializable {
         carregar_Combo();
     }
 
+<<<<<<< Updated upstream
     private Sessoes carregar_Model() {
         // Cria uma nova instância de Sessoes
         Sessoes model = new Sessoes();
@@ -109,6 +112,14 @@ public class GerenciarSessaoController implements Initializable {
 
         return model;
     }
+=======
+    //private Sessoes carregar_model() {
+        //Sessoes model = new Sessoes();
+        //int idSessao = Integer.parseInt(txt_SessaoId.getText());
+        //int numeroSala = Integer.parseInt(txt_Sala.getText());
+        
+    //}
+>>>>>>> Stashed changes
 
     private Sessoes carregar_Model_insere() {
          // Cria uma nova instância de Sessoes
@@ -155,20 +166,17 @@ public class GerenciarSessaoController implements Initializable {
     @FXML
     private void btn_gravar_Click(ActionEvent event) {
 
-        if (!validarDados()) {
-            mensagem("Por favor preencha todos os campos");
-            return; //sai fora do método
-        }
-        sessao = carregar_model();
+        //if (!validarDados()) {
+           // mensagem("Por favor preencha todos os campos");
+            //return; //sai fora do método
+        //}
+        //sessao = carregar_model();
     }
 
     @FXML
     private void btn_excluir_Click(ActionEvent event) {
     }
-
-    @FXML
-    private void btn_visualizarSessoes_Click(ActionEvent event) {
-    }
+    
 
     @FXML
     private void btn_voltar_Click(ActionEvent event) {

@@ -4,8 +4,8 @@
  */
 package br.com.fatec.controller;
 
-import br.com.fatec.DAO.SessaoDAO;
-import br.com.fatec.model.Sessoes;
+import br.com.fatec.DAO.FilmeDAO;
+import br.com.fatec.model.Filme;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
@@ -27,26 +27,32 @@ import javafx.scene.control.cell.PropertyValueFactory;
  *
  * @author Fernanda
  */
-public class VisualizarSessoesController implements Initializable {
-    private String dadoPassado;
+public class VisualizarFilmesController implements Initializable {
+
     @FXML
-    private TableView<Sessoes> tbSessoes;
+    private Label lblTitulo;
     @FXML
-    private TableColumn<Sessoes, Integer> colID;
+    private TableView<Filme> tbFilmes;
     @FXML
-    private TableColumn<Sessoes, Integer> colFilme;
+    private TableColumn<Filme, Boolean> colSelecionado;
     @FXML
-    private TableColumn<Sessoes, Integer> colSala;
+    private TableColumn<Filme, Integer> colId;
     @FXML
-    private TableColumn<Sessoes, String> colInicial;
+    private TableColumn<Filme, String> colNome;
     @FXML
-    private TableColumn<Sessoes, String> colFinal;
+    private TableColumn<Filme, String> colDuracao;
     @FXML
-    private TableColumn<Sessoes, String> colHora;
+    private TableColumn<Filme, String> colClass;
+    @FXML
+    private TableColumn<Filme, String> colSinopse;
+    @FXML
+    private TableColumn<Filme, String> colGenero;
     @FXML
     private Button btnExcluir;
     @FXML
-    private TableColumn<Sessoes, Boolean> colSelecionado;
+    private Button btnVoltar;
+    
+    private String dadoPassado;
 
     public String getDadoPassado() {
         return dadoPassado;
@@ -55,64 +61,44 @@ public class VisualizarSessoesController implements Initializable {
     public void setDadoPassado(String dadoPassado) {
         this.dadoPassado = dadoPassado;
     }
-
-
-    @FXML
-    private Label lblTitulo;
-
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        /*
-        private TableColumn<Sessoes, Integer> colID;
-    @FXML
-    private TableColumn<Sessoes, Integer> colFilme;
-    @FXML
-    private TableColumn<Sessoes, Integer> colSala;
-    @FXML
-    private TableColumn<Sessoes, String> colInicial;
-    @FXML
-    private TableColumn<Sessoes, String> colFinal;
-    @FXML
-    private TableColumn<Sessoes, String> colHora;
-    @FXML
-    private Button btnExcluir;
-    @FXML
-    private TableColumn<Sessoes, Boolean> colSelecionado;
-        */
         colSelecionado.setCellValueFactory(
                 new PropertyValueFactory<>("selecionado"));
-        colID.setCellValueFactory(
-                new PropertyValueFactory<>("idSessao"));
-        colSala.setCellValueFactory(
-                new PropertyValueFactory<>("numeroSala"));
-        colInicial.setCellValueFactory(
-                new PropertyValueFactory<>("dataInicio"));
-        colFinal.setCellValueFactory(
-                new PropertyValueFactory<>("dataFim"));
-        colHora.setCellValueFactory(
-                new PropertyValueFactory<>("horario"));
+        colId.setCellValueFactory(
+                new PropertyValueFactory<>("idFilme"));
+        colNome.setCellValueFactory(
+                new PropertyValueFactory<>("nomeFilme"));
+        colDuracao.setCellValueFactory(
+                new PropertyValueFactory<>("duracao"));
+        colClass.setCellValueFactory(
+                new PropertyValueFactory<>("classificacao"));
+        colSinopse.setCellValueFactory(
+                new PropertyValueFactory<>("sinopse"));
+        colGenero.setCellValueFactory(
+                new PropertyValueFactory<>("genero"));
+        
         
         //coloca o checkbox na coluna
         colSelecionado.setCellFactory(
                 CheckBoxTableCell.forTableColumn(colSelecionado));
 
         //preenche a tabela
-        tbSessoes.setItems(preencheTabela());
-    }    
-
-    private ObservableList<Sessoes> preencheTabela() {
-        SessaoDAO dao = new SessaoDAO();
-        ObservableList<Sessoes> sessoes
+        tbFilmes.setItems(preencheTabela());
+    }
+    private ObservableList<Filme> preencheTabela() {
+        FilmeDAO dao = new FilmeDAO();
+        ObservableList<Filme> filmes
             = FXCollections.observableArrayList();
         
         try {
             //busca somente que termina com 'a'
             //proprietarios.addAll(dao.lista("nome like '%a'"));
             //busca todo mundo
-            sessoes.addAll(dao.lista(""));
+            filmes.addAll(dao.lista(""));
         } catch (SQLException ex) {
             Alert alerta = new Alert(Alert.AlertType.ERROR,
                     "Erro Preenche Tabela: " + ex.getMessage(),
@@ -120,7 +106,7 @@ public class VisualizarSessoesController implements Initializable {
             alerta.showAndWait();
         }
         
-        return sessoes;
-    }
+        return filmes;
+    }    
     
 }

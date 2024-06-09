@@ -1,4 +1,18 @@
 br\com\fatec\model\Poltrona.class
 br\com\fatec\controller\IniciarPedidoController.class
 br\com\fatec\model\Sala.class
+<<<<<<< Updated upstream
+=======
+br\com\fatec\model\Administrador.class
+br\com\fatec\DAO\DAO.class
+br\com\fatec\model\Sessoes.class
+br\com\fatec\DAO\AdministradorDAO.class
+br\com\fatec\App.class
+br\com\fatec\controller\GerenciarFilmeController.class
+br\com\fatec\DAO\FilmeDAO.class
+br\com\fatec\controller\TelaInicialController.class
+br\com\fatec\DAO\SessaoDAO.class
+br\com\fatec\persistencia\Banco.class
+br\com\fatec\model\Cliente.class
+>>>>>>> Stashed changes
 br\com\fatec\model\Usuario.class

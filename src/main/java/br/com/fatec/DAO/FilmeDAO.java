@@ -146,46 +146,49 @@ public class FilmeDAO implements DAO<Filme> {
     }
 
     @Override
-    public Collection<Filme> lista(String criterio)
-            throws SQLException {
-        //criar uma coleção
-        Collection<Filme> listagem = new ArrayList<>();
-
-        filme = null;
-        //Comando SELECT
+    public Collection<Filme> lista(String criterio) throws SQLException {
+        //cria uma lista para armazenar os dados vindos do banco
+        ArrayList<Filme> lista = new ArrayList<>();
+        
         String sql = "SELECT * FROM filme ";
-        //colocar filtro ou nao
-        if (criterio.length() != 0) {
-            sql += "WHERE " + criterio;
+
+        //precisa fazer filtro para listagem
+        if(criterio != null && criterio.length() > 0) {
+            sql += " WHERE " + criterio;
         }
-
-        //conecta ao banco
+        
+        //abre a conexao com o banco
         Banco.conectar();
-
+        
+        //preparar o comando PST
         pst = Banco.obterConexao().prepareStatement(sql);
-
-        //Executa o comando SELECT
-        rs = pst.executeQuery();
-
-        //le o próximo regitro
-        while (rs.next()) { //achou 1 registro
-
-            //cria o objeto filme
+        
+        //executar o comando
+        rs = pst.executeQuery(); //esse método serve para SELECT
+        
+        //Varre todo o resultado da consulta e coloca cada registro dentro
+        //de um objeto e coloca o objeto dentro da coleção
+        while(rs.next()) {
+            //criar o objeto
             filme = new Filme();
-            //move os dados do resultSet para o objeto filme 
+            
+            //mover os dados do resultSet para o objeto proprietário
             filme.setIdFilme(rs.getInt("idFilme"));
             filme.setNomeFilme(rs.getString("nomeFilme"));
             filme.setDuracao(rs.getString("duracao"));
-            filme.setClassificacao(rs.getString("classificacao"));
             filme.setSinopse(rs.getString("sinopse"));
             filme.setGenero(rs.getString("genero"));
-
-            //adicionar na coleção
-            listagem.add(filme);
+            filme.setClassificacao(rs.getString("classificacao"));
+            
+            //move o objeto para a coleção
+            lista.add(filme);
         }
-
+                
+        //fecha a conexao
         Banco.desconectar();
-
-        return listagem;
+        
+        //devolve o objeto proprietario
+        return lista;
+        
     }
 }
