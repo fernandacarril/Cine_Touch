@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -19,6 +20,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 
@@ -48,11 +50,15 @@ public class VisualizarFilmesController implements Initializable {
     @FXML
     private TableColumn<Filme, String> colGenero;
     @FXML
-    private Button btnExcluir;
-    @FXML
     private Button btnVoltar;
     
     private String dadoPassado;
+    @FXML
+    private Label lblParametro;
+    @FXML
+    private TextField txtParam;
+    @FXML
+    private Button btnPesquisar;
 
     public String getDadoPassado() {
         return dadoPassado;
@@ -66,8 +72,9 @@ public class VisualizarFilmesController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        colSelecionado.setCellValueFactory(
-            cellData -> cellData.getValue().selecionadoProperty().asObject());
+        colSelecionado.setCellValueFactory(cellData -> {
+            return cellData.getValue().selecionadoProperty().asObject();
+        });
         colId.setCellValueFactory(
                 new PropertyValueFactory<>("idFilme"));
         colNome.setCellValueFactory(
@@ -108,5 +115,24 @@ public class VisualizarFilmesController implements Initializable {
         
         return filmes;
     }    
+
+    @FXML
+    private void btnVoltar_Click(ActionEvent event) {
+    }
+
+    @FXML
+    private void btnPesquisar_Click(ActionEvent event) throws SQLException {
+        FilmeDAO dao = new FilmeDAO();
+        ObservableList<Filme> filmes
+            = FXCollections.observableArrayList();
+        try{
+           filmes.addAll(dao.lista(txtParam.getText())); 
+        } catch (SQLException ex) {
+            Alert alerta = new Alert(Alert.AlertType.ERROR,
+                    "Erro Preenche Tabela: " + ex.getMessage(),
+                    ButtonType.OK);
+            alerta.showAndWait();
+        }
+    }
     
 }

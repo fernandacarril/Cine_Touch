@@ -66,7 +66,7 @@ public class Filme {
         return genero;
     }
     public SimpleStringProperty classificacaoProperty() {
-        return genero;
+        return classificacao;
     }
 
     public int getIdFilme() {

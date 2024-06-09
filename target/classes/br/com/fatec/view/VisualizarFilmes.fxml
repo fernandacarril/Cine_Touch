@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
@@ -30,10 +31,12 @@
             <TableColumn fx:id="colGenero" minWidth="0.0" prefWidth="101.60009765625" text="Gênero" />
         </columns>
       </TableView>
-      <HBox layoutX="26.0" layoutY="332.0" prefHeight="70.0" prefWidth="842.0" spacing="500.0">
+      <HBox layoutX="26.0" layoutY="332.0" prefHeight="70.0" prefWidth="842.0" spacing="10.0">
          <children>
-            <Button fx:id="btnExcluir" mnemonicParsing="false" prefHeight="70.0" prefWidth="180.0" text="Excluir" />
-            <Button fx:id="btnVoltar" mnemonicParsing="false" prefHeight="70.0" prefWidth="180.0" text="Voltar" />
+            <Button fx:id="btnVoltar" mnemonicParsing="false" onAction="#btnVoltar_Click" prefHeight="70.0" prefWidth="180.0" text="Voltar" />
+            <Label fx:id="lblParametro" alignment="CENTER_RIGHT" prefHeight="18.0" prefWidth="198.0" text="Parâmetro:" textAlignment="RIGHT" />
+            <TextField fx:id="txtParam" prefHeight="26.0" prefWidth="462.0" />
+            <Button fx:id="btnPesquisar" mnemonicParsing="false" onAction="#btnPesquisar_Click" prefHeight="26.0" prefWidth="97.0" text="Pesquisar" />
          </children>
       </HBox>
    </children>
