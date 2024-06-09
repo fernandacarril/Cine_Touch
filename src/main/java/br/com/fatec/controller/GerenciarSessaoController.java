@@ -84,6 +84,7 @@ public class GerenciarSessaoController implements Initializable {
         carregar_Combo();
     }
 
+
     private Sessoes carregar_Model_Sessao() {
         Sessoes modelS = new Sessoes();
         try {
@@ -96,8 +97,48 @@ public class GerenciarSessaoController implements Initializable {
             System.out.println("Erro: Um dos campos numéricos contém um valor inválido.");
             e.printStackTrace();
         }
+       return null;
+    }
 
-        return modelS;
+    private Sessoes carregar_Model() {
+        // Cria uma nova instância de Sessoes
+        Sessoes model = new Sessoes();
+
+
+        return model;
+    }
+
+    //private Sessoes carregar_model() {
+        //Sessoes model = new Sessoes();
+        //int idSessao = Integer.parseInt(txt_SessaoId.getText());
+        //int numeroSala = Integer.parseInt(txt_Sala.getText());
+        
+    //}
+
+    private Sessoes carregar_Model_insere() {
+         // Cria uma nova instância de Sessoes
+        Sessoes model = new Sessoes();
+
+        // Define o idSessao
+        model.setIdSessao(Integer.parseInt(txt_SessaoId.getText()));
+
+        // Cria uma instância de Sala e configura os valores
+        Sala sala = new Sala();
+        sala.setNumeroSala(Integer.parseInt(txt_Sala.getText())); // Presumo que txt_Sala contenha o número da sala
+
+        // Cria uma instância de Filme e configura os valores
+        Filme filmes = new Filme();
+        filmes.setIdFilme(Integer.parseInt(txt_FilmeId.getText())); // Presumo que txt_FilmeId contenha o id do filme
+
+        // Define sala e filme no modelo
+        model.setSala(sala);
+        model.setFilme(filmes);
+
+        // Define as outras propriedades
+        model.setDataI(txt_DataInicio.getText());
+        model.setDataF(txt_DataFim.getText());
+        model.setHorario(txt_Horas.getText());
+        return null;
     }
 
     private Filme carregar_Model_Filme() {
@@ -269,8 +310,11 @@ public class GerenciarSessaoController implements Initializable {
         } else {
             return true;
         }
-
     }
+    //private boolean validarDados() {
+
+
+    //}
 
     private void habilitarInclusao(boolean inc) {
         btn_excluir.setDisable(inc);

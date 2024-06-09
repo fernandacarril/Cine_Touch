@@ -6,6 +6,7 @@ package br.com.fatec.controller;
 
 import br.com.fatec.DAO.FilmeDAO;
 import br.com.fatec.model.Filme;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.Collection;
@@ -64,6 +65,8 @@ public class GerenciarFilmeController implements Initializable {
     private String dadoPassado;
     @FXML
     private Button btnPesquisar;
+    @FXML
+    private Button btnVisualizar;
     
     public String getDadoPassado() {
         return dadoPassado;
@@ -179,7 +182,6 @@ public class GerenciarFilmeController implements Initializable {
             txtFilme.setText("");
         }
     }
-    
     private boolean validarDados() {
         if(txtFilme.getText().length() == 0 ||
                 cbClass.getSelectionModel().isEmpty() ||
@@ -300,6 +302,12 @@ public class GerenciarFilmeController implements Initializable {
             mensagem("Erro na procura do Filme: " + 
                     ex.getMessage());
         }
+    }
+
+    @FXML
+    private void btnVisualizar_Click(ActionEvent event) throws IOException {
+        Filme f = new Filme();
+        f.startVer(new Stage());
     }
     
 

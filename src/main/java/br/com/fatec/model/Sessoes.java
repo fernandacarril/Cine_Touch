@@ -6,7 +6,6 @@ package br.com.fatec.model;
 
 import br.com.fatec.App;
 import br.com.fatec.controller.GerenciarSessaoController;
-import br.com.fatec.controller.VisualizarSessoesController;
 import static br.com.fatec.model.Administrador.setStage;
 import java.io.IOException;
 import javafx.fxml.FXMLLoader;
@@ -35,16 +34,6 @@ public class Sessoes {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("view/GerenciarSessao.fxml"));   
         Parent root = fxmlLoader.load();
         GerenciarSessaoController controller = fxmlLoader.getController();
-        controller.setDadoPassado("Funcionou");
-        Scene scene = new Scene(root);
-        tela.setScene(scene);
-        tela.show();
-    }
-    public void startVer(Stage tela) throws IOException {
-        setStage(tela);
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("view/VisualizarSessoes.fxml"));   
-        Parent root = fxmlLoader.load();
-        VisualizarSessoesController controller = fxmlLoader.getController();
         controller.setDadoPassado("Funcionou");
         Scene scene = new Scene(root);
         tela.setScene(scene);
