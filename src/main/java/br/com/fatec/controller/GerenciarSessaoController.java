@@ -7,6 +7,7 @@ package br.com.fatec.controller;
 import br.com.fatec.DAO.FilmeDAO;
 import br.com.fatec.DAO.SessaoDAO;
 import br.com.fatec.model.Filme;
+import br.com.fatec.model.Sala;
 import br.com.fatec.model.Sessoes;
 import java.net.URL;
 import java.sql.SQLException;
@@ -82,17 +83,64 @@ public class GerenciarSessaoController implements Initializable {
         carregar_Combo();
     }
 
-    private Sessoes carregar_model() {
+    private Sessoes carregar_Model() {
+        // Cria uma nova instância de Sessoes
         Sessoes model = new Sessoes();
+
+        // Define o idSessao
         model.setIdSessao(Integer.parseInt(txt_SessaoId.getText()));
-        model.setSala(Integer.parseInt(txt_Sala.getText()));
-        model.setFilme(Integer.parseInt(txt_FilmeId.getText()));
+
+        // Cria uma instância de Sala e configura os valores
+        Sala sala = new Sala();
+        sala.setNumeroSala(Integer.parseInt(txt_Sala.getText())); // Presumo que txt_Sala contenha o número da sala
+
+        // Cria uma instância de Filme e configura os valores
+        Filme filmes = new Filme();
+        filmes.setIdFilme(Integer.parseInt(txt_FilmeId.getText())); // Presumo que txt_FilmeId contenha o id do filme
+
+        // Define sala e filme no modelo
+        model.setSala(sala);
+        model.setFilme(filmes);
+
+        // Define as outras propriedades
         model.setDataI(txt_DataInicio.getText());
         model.setDataF(txt_DataFim.getText());
         model.setHorario(txt_Horas.getText());
-        
+
+        return model;
     }
 
+    private Sessoes carregar_Model_insere() {
+         // Cria uma nova instância de Sessoes
+        Sessoes model = new Sessoes();
+
+        // Define o idSessao
+        model.setIdSessao(Integer.parseInt(txt_SessaoId.getText()));
+
+        // Cria uma instância de Sala e configura os valores
+        Sala sala = new Sala();
+        sala.setNumeroSala(Integer.parseInt(txt_Sala.getText())); // Presumo que txt_Sala contenha o número da sala
+
+        // Cria uma instância de Filme e configura os valores
+        Filme filmes = new Filme();
+        filmes.setIdFilme(Integer.parseInt(txt_FilmeId.getText())); // Presumo que txt_FilmeId contenha o id do filme
+
+        // Define sala e filme no modelo
+        model.setSala(sala);
+        model.setFilme(filmes);
+
+        // Define as outras propriedades
+        model.setDataI(txt_DataInicio.getText());
+        model.setDataF(txt_DataFim.getText());
+        model.setHorario(txt_Horas.getText());
+
+    }
+    
+    private void carregar_View(Sessoes model){
+        int idSessaoSelecionada = model.getIdSessao();
+        
+        
+    }
     @FXML
     private void cb_Filme_Change(ActionEvent event) {
         if (cb_Filme.getValue() != null) {
@@ -152,6 +200,10 @@ public class GerenciarSessaoController implements Initializable {
         alerta.setContentText("");
 
         alerta.showAndWait(); //exibe a mensage
+    }
+
+    private boolean validarDados() {
+
     }
 
 }
