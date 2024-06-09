@@ -67,8 +67,9 @@ public class GerenciarSessaoController implements Initializable {
     }
 
     private SessaoDAO sessaoDAO = new SessaoDAO();
-    private Filme filme;
     private Sessoes sessao;
+    private FilmeDAO filmeDAO = new FilmeDAO(); 
+    private Filme filme;
     private ObservableList<Filme> listaFilme
             = FXCollections.observableArrayList();
     private boolean incluindo = true;
@@ -83,68 +84,96 @@ public class GerenciarSessaoController implements Initializable {
         carregar_Combo();
     }
 
-    private Sessoes carregar_Model() {
-        // Cria uma nova instância de Sessoes
-        Sessoes model = new Sessoes();
+    private Sessoes carregar_Model_Sessao() {
+        Sessoes modelS = new Sessoes();
+        try {
+            modelS.setIdSessao(Integer.parseInt(txt_SessaoId.getText()));
+            modelS.setDataI(txt_DataInicio.getText());
+            modelS.setDataF(txt_DataFim.getText());
+            modelS.setHorario(txt_Horas.getText());
+        } catch (NumberFormatException e) {
+            // Exiba uma mensagem de erro apropriada
+            System.out.println("Erro: Um dos campos numéricos contém um valor inválido.");
+            e.printStackTrace();
+        }
 
-        // Define o idSessao
-        model.setIdSessao(Integer.parseInt(txt_SessaoId.getText()));
-
-        // Cria uma instância de Sala e configura os valores
-        Sala sala = new Sala();
-        sala.setNumeroSala(Integer.parseInt(txt_Sala.getText())); // Presumo que txt_Sala contenha o número da sala
-
-        // Cria uma instância de Filme e configura os valores
-        Filme filmes = new Filme();
-        filmes.setIdFilme(Integer.parseInt(txt_FilmeId.getText())); // Presumo que txt_FilmeId contenha o id do filme
-
-        // Define sala e filme no modelo
-        model.setSala(sala);
-        model.setFilme(filmes);
-
-        // Define as outras propriedades
-        model.setDataI(txt_DataInicio.getText());
-        model.setDataF(txt_DataFim.getText());
-        model.setHorario(txt_Horas.getText());
-
-        return model;
+        return modelS;
     }
 
-    private Sessoes carregar_Model_insere() {
-         // Cria uma nova instância de Sessoes
-        Sessoes model = new Sessoes();
-
-        // Define o idSessao
-        model.setIdSessao(Integer.parseInt(txt_SessaoId.getText()));
-
-        // Cria uma instância de Sala e configura os valores
-        Sala sala = new Sala();
-        sala.setNumeroSala(Integer.parseInt(txt_Sala.getText())); // Presumo que txt_Sala contenha o número da sala
-
-        // Cria uma instância de Filme e configura os valores
-        Filme filmes = new Filme();
-        filmes.setIdFilme(Integer.parseInt(txt_FilmeId.getText())); // Presumo que txt_FilmeId contenha o id do filme
-
-        // Define sala e filme no modelo
-        model.setSala(sala);
-        model.setFilme(filmes);
-
-        // Define as outras propriedades
-        model.setDataI(txt_DataInicio.getText());
-        model.setDataF(txt_DataFim.getText());
-        model.setHorario(txt_Horas.getText());
-
+    private Filme carregar_Model_Filme() {
+        Filme filmeS = new Filme();
+        try {
+            filmeS.setIdFilme(Integer.parseInt(txt_FilmeId.getText()));
+            filmeS.setNomeFilme(txt_FilmeId.getText());
+        } catch (NumberFormatException e) {
+            // Exiba uma mensagem de erro apropriada
+            System.out.println("Erro: Um dos campos numéricos contém um valor inválido.");
+            e.printStackTrace();
+        }
+        return filmeS;
     }
-    
-    private void carregar_View(Sessoes model){
-        int idSessaoSelecionada = model.getIdSessao();
-        
-        
+
+    private Sessoes carregar_Model__Sessao_insere() {
+        Sessoes modelS = new Sessoes();
+        try {
+            modelS.setIdSessao(Integer.parseInt(txt_SessaoId.getText()));
+            modelS.setDataI(txt_DataInicio.getText());
+            modelS.setDataF(txt_DataFim.getText());
+            modelS.setHorario(txt_Horas.getText());
+        } catch (NumberFormatException e) {
+            // Exiba uma mensagem de erro apropriada
+            System.out.println("Erro: Um dos campos numéricos contém um valor inválido.");
+            e.printStackTrace();
+        }
+
+        return modelS;
     }
+
+    private Filme carregar_model_filme_insere() {
+        Filme filmeS = new Filme();
+        try {
+            filmeS.setIdFilme(Integer.parseInt(txt_FilmeId.getText()));
+            filmeS.setNomeFilme(txt_FilmeId.getText());
+        } catch (NumberFormatException e) {
+            // Exiba uma mensagem de erro apropriada
+            System.out.println("Erro: Um dos campos numéricos contém um valor inválido.");
+            e.printStackTrace();
+        }
+        return filmeS;
+    }
+
+    private void carregar_View(Sessoes model) {
+        // Define o ID da Sessão no campo de texto
+        txt_SessaoId.setText(String.valueOf(model.getIdSessao()));
+
+        // Define a sala no campo de texto
+        if (model.getSala() != null) {
+            txt_Sala.setText(String.valueOf(model.getSala().getNumeroSala()));
+        }
+
+        // Define os outros campos de texto
+        txt_DataInicio.setText(model.getDataI());
+        txt_DataFim.setText(model.getDataF());
+        txt_Horas.setText(model.getHorario());
+
+        // Define o filme selecionado na ComboBox
+        Filme filmeSelecionado = model.getFilme();
+        if (filmeSelecionado != null) {
+            for (Filme filme : cb_Filme.getItems()) {
+                if (filme.getIdFilme() == filmeSelecionado.getIdFilme()) {
+                    cb_Filme.setValue(filme);
+                    break; // Interrompe o loop após encontrar o Filme correspondente
+                }
+            }
+        }
+        // Define o ID do filme no campo de texto
+        txt_FilmeId.setText(String.valueOf(filmeSelecionado != null ? filmeSelecionado.getIdFilme() : ""));
+    }
+
     @FXML
     private void cb_Filme_Change(ActionEvent event) {
         if (cb_Filme.getValue() != null) {
-            txt_FilmeId.setText(String.valueOf(cb_Filme.getValue().getIdFilme()));
+            txt_FilmeId.setText(String.valueOf(cb_Filme.getValue().getNomeFilme()));
 
         } else {
             txt_FilmeId.setText("");
@@ -159,7 +188,34 @@ public class GerenciarSessaoController implements Initializable {
             mensagem("Por favor preencha todos os campos");
             return; //sai fora do método
         }
-        sessao = carregar_model();
+        sessao = carregar_Model_Sessao();
+        filme = carregar_Model_Filme();
+        try {
+            if (incluindo) { //se a operação geral é de inclusão
+                sessao = carregar_Model_Sessao();
+                if (sessaoDAO.insere(sessao)&& filmeDAO.insere(filme)) {
+                    mensagem("Filme incluido com sucesso!!");
+                    cb_Filme.requestFocus();
+                } else {
+                    mensagem("Erro na Inclusão");
+                }
+            } else { //alterando
+                sessao = carregar_Model_Sessao();
+                if (sessaoDAO.altera(sessao)) {
+                    mensagem("Filme alterado com sucesso!!!");
+                    cb_Filme.requestFocus();
+                } else {
+                    mensagem("Erro na Alteração");
+                }
+            }
+        } catch (SQLException ex) {
+            mensagem("Erro na Inclusão\n" + ex.getMessage());
+        }
+
+        //tudo certo, vamos incluir um veiculo novo
+        limparCampos();
+        habilitarInclusao(true);
+
     }
 
     @FXML
@@ -179,10 +235,9 @@ public class GerenciarSessaoController implements Initializable {
     }
 
     private void carregar_Combo() {
-        FilmeDAO filmeDao = new FilmeDAO();
-        try {
-            //busca todos os registros no banco para uma Coleção
-            Collection<Filme> listFilm = filmeDao.lista("");
+        FilmeDAO Filmedao = new FilmeDAO();
+        try {            //busca todos os registros no banco para uma Coleção
+            Collection<Filme> listFilm = Filmedao.lista("");
             //colocar a lista gerada pela DAO dentro da COMBO
             listaFilme.addAll(listFilm);
             //informa que a combo possui uma lista
@@ -203,7 +258,33 @@ public class GerenciarSessaoController implements Initializable {
     }
 
     private boolean validarDados() {
+        if (txt_SessaoId.getText().length() == 0
+                || txt_FilmeId.getText().length() == 0
+                || cb_Filme.getSelectionModel().isEmpty()
+                || txt_Sala.getText().length() == 0
+                || txt_DataInicio.getText().length() == 0
+                || txt_DataFim.getText().length() == 0
+                || txt_Horas.getText().length() == 0) {
+            return false;
+        } else {
+            return true;
+        }
 
+    }
+
+    private void habilitarInclusao(boolean inc) {
+        btn_excluir.setDisable(inc);
+    }
+
+    private void limparCampos() {
+        txt_FilmeId.setText("");
+        txt_Sala.setText("");
+        cb_Filme.getSelectionModel().clearSelection();
+        txt_DataInicio.setText("");
+        txt_DataFim.setText("");
+        txt_Horas.setText("");
+        //manda o foco para a placa do veículoi
+        txt_FilmeId.requestFocus();
     }
 
 }

@@ -179,6 +179,7 @@ public class GerenciarFilmeController implements Initializable {
             txtFilme.setText("");
         }
     }
+    
     private boolean validarDados() {
         if(txtFilme.getText().length() == 0 ||
                 cbClass.getSelectionModel().isEmpty() ||
