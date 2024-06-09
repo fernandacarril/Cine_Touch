@@ -20,8 +20,10 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javafx.util.StringConverter;
 
 
 /**
@@ -152,13 +154,41 @@ public class GerenciarFilmeController implements Initializable {
     private void carregar_Combo_ID() {
         FilmeDAO filmeDao = new FilmeDAO();
         try {
-            //busca todos os registros no banco para uma Coleção
             Collection<Filme> listFilm = filmeDao.lista("");
-            //colocar a lista gerada pela DAO dentro da COMBO
-            listaFilme.addAll(listFilm);
-            //informa que a combo possui uma lista
-            cbId.setItems(listaFilme);
-            cbClass.setItems(listaClass);
+        
+        // Limpa a ObservableList antes de adicionar novos itens
+        listaFilme.clear();
+        listaFilme.addAll(listFilm);
+
+        // Configura os itens da ComboBox
+        cbId.setItems(listaFilme);
+
+        // Configura o StringConverter para exibir o ID
+        cbId.setConverter(new StringConverter<Filme>() {
+            @Override
+            public String toString(Filme filme) {
+                return filme == null ? "" : String.valueOf(filme.getIdFilme());
+            }
+
+            @Override
+            public Filme fromString(String string) {
+                // Implementação necessária apenas se você quiser converter o texto de volta para um objeto Filme
+                return null;
+            }
+        });
+
+        // Configura o CellFactory para exibir o ID
+        cbId.setCellFactory(comboBox -> new ListCell<Filme>() {
+            @Override
+            protected void updateItem(Filme filme, boolean empty) {
+                super.updateItem(filme, empty);
+                if (empty || filme == null) {
+                    setText("");
+                } else {
+                    setText(String.valueOf(filme.getIdFilme()));
+                }
+            }
+        });
         } catch (SQLException ex) {
             mensagem(ex.getMessage());
         }

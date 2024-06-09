@@ -67,7 +67,7 @@ public class VisualizarFilmesController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         colSelecionado.setCellValueFactory(
-                new PropertyValueFactory<>("selecionado"));
+            cellData -> cellData.getValue().selecionadoProperty().asObject());
         colId.setCellValueFactory(
                 new PropertyValueFactory<>("idFilme"));
         colNome.setCellValueFactory(
