@@ -156,8 +156,9 @@ public class FilmeDAO implements DAO<Filme> {
         String sql = "SELECT * FROM filme ";
         //colocar filtro ou nao
         if (criterio.length() != 0) {
-            sql += "WHERE " + criterio;
+            sql += "WHERE " + criterio ;
         }
+        System.out.println("SQL: "+ sql);
 
         //conecta ao banco
         Banco.conectar();

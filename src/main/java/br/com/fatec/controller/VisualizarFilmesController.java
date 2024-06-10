@@ -17,6 +17,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -59,6 +60,11 @@ public class VisualizarFilmesController implements Initializable {
     private TextField txtParam;
     @FXML
     private Button btnPesquisar;
+    @FXML
+    private ComboBox<String> cbCol;
+    
+    private ObservableList<String> listaFiltro =  
+            FXCollections.observableArrayList("Nome","Duração","Classificação","Gênero");
 
     public String getDadoPassado() {
         return dadoPassado;
@@ -95,6 +101,7 @@ public class VisualizarFilmesController implements Initializable {
 
         //preenche a tabela
         tbFilmes.setItems(preencheTabela());
+        cbCol.setItems(listaFiltro);
     }
     private ObservableList<Filme> preencheTabela() {
         FilmeDAO dao = new FilmeDAO();
@@ -115,6 +122,25 @@ public class VisualizarFilmesController implements Initializable {
         
         return filmes;
     }    
+    private ObservableList<Filme> preencheTbFiltro(String criterio){
+        FilmeDAO dao = new FilmeDAO();
+        ObservableList<Filme> filmes
+            = FXCollections.observableArrayList();
+        
+        try{
+           filmes.addAll(dao.lista(criterio +" like '%"+txtParam.getText().toUpperCase()+"%'")); 
+           System.out.println(filmes);
+           tbFilmes.setItems(filmes);
+           tbFilmes.refresh();
+           
+        } catch (SQLException ex) {
+            Alert alerta = new Alert(Alert.AlertType.ERROR,
+                    "Erro Preenche Tabela: " + ex.getMessage(),
+                    ButtonType.OK);
+            alerta.showAndWait();
+        }
+        return filmes;
+    }
 
     @FXML
     private void btnVoltar_Click(ActionEvent event) {
@@ -122,17 +148,21 @@ public class VisualizarFilmesController implements Initializable {
 
     @FXML
     private void btnPesquisar_Click(ActionEvent event) throws SQLException {
-        FilmeDAO dao = new FilmeDAO();
-        ObservableList<Filme> filmes
-            = FXCollections.observableArrayList();
-        try{
-           filmes.addAll(dao.lista(txtParam.getText())); 
-        } catch (SQLException ex) {
-            Alert alerta = new Alert(Alert.AlertType.ERROR,
-                    "Erro Preenche Tabela: " + ex.getMessage(),
-                    ButtonType.OK);
-            alerta.showAndWait();
+        switch (cbCol.getValue()){
+            case "Nome" :
+                preencheTbFiltro("nomeFilme");
+                break;
+            case "Duração":
+                preencheTbFiltro("duracao");
+                break;
+            case "Classificação":
+                preencheTbFiltro("classificacao");
+                break;
+            case "Gênero":
+                preencheTbFiltro("genero");
+                break;
         }
+        
     }
     
 }
