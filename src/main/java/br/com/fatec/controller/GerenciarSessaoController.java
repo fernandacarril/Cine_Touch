@@ -92,9 +92,11 @@ public class GerenciarSessaoController implements Initializable {
         try {            //busca todos os registros no banco para uma Coleção
             Collection<Filme> listFilm = Filmedao.lista("");
             //colocar a lista gerada pela DAO dentro da COMBO
+            listaFilme.clear();
             listaFilme.addAll(listFilm);
             //informa que a combo possui uma lista
             cb_Filme.setItems(listaFilme);
+             
         } catch (SQLException ex) {
             mensagem(ex.getMessage());
         }
@@ -178,8 +180,7 @@ public class GerenciarSessaoController implements Initializable {
 
         return filmeS;
     }
-    
-    
+
     private void carregar_View(Sessoes model) {
         // Define o ID da Sessão no campo de texto
         txt_SessaoId.setText(String.valueOf(model.getIdSessao()));
