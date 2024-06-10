@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 C:\Users\fefet\Documents\GitHub\Cine_Touch\src\main\java\br\com\fatec\App.java
 C:\Users\fefet\Documents\GitHub\Cine_Touch\src\main\java\br\com\fatec\DAO\AdministradorDAO.java
 C:\Users\fefet\Documents\GitHub\Cine_Touch\src\main\java\br\com\fatec\controller\GerenciarFilmeController.java
@@ -19,3 +20,27 @@ C:\Users\fefet\Documents\GitHub\Cine_Touch\src\main\java\br\com\fatec\controller
 C:\Users\fefet\Documents\GitHub\Cine_Touch\src\main\java\br\com\fatec\controller\LoginAdmController.java
 C:\Users\fefet\Documents\GitHub\Cine_Touch\src\main\java\br\com\fatec\persistencia\Banco.java
 C:\Users\fefet\Documents\GitHub\Cine_Touch\src\main\java\br\com\fatec\model\Sala.java
+=======
+C:\Users\Fernanda\Desktop\FATEC\4 semestre\poo\Cine_Touch\src\main\java\br\com\fatec\model\Usuario.java
+C:\Users\Fernanda\Desktop\FATEC\4 semestre\poo\Cine_Touch\src\main\java\br\com\fatec\controller\GerenciarFilmeController.java
+C:\Users\Fernanda\Desktop\FATEC\4 semestre\poo\Cine_Touch\src\main\java\br\com\fatec\controller\GerenciarAperitivosController.java
+C:\Users\Fernanda\Desktop\FATEC\4 semestre\poo\Cine_Touch\src\main\java\br\com\fatec\DAO\FilmeDAO.java
+C:\Users\Fernanda\Desktop\FATEC\4 semestre\poo\Cine_Touch\src\main\java\br\com\fatec\controller\LoginAdmController.java
+C:\Users\Fernanda\Desktop\FATEC\4 semestre\poo\Cine_Touch\src\main\java\br\com\fatec\controller\TelaInicialController.java
+C:\Users\Fernanda\Desktop\FATEC\4 semestre\poo\Cine_Touch\src\main\java\br\com\fatec\model\Aperitivos.java
+C:\Users\Fernanda\Desktop\FATEC\4 semestre\poo\Cine_Touch\src\main\java\br\com\fatec\App.java
+C:\Users\Fernanda\Desktop\FATEC\4 semestre\poo\Cine_Touch\src\main\java\br\com\fatec\model\Sessoes.java
+C:\Users\Fernanda\Desktop\FATEC\4 semestre\poo\Cine_Touch\src\main\java\br\com\fatec\DAO\AdministradorDAO.java
+C:\Users\Fernanda\Desktop\FATEC\4 semestre\poo\Cine_Touch\src\main\java\br\com\fatec\controller\GerenciarSessaoController.java
+C:\Users\Fernanda\Desktop\FATEC\4 semestre\poo\Cine_Touch\src\main\java\br\com\fatec\DAO\SessaoDAO.java
+C:\Users\Fernanda\Desktop\FATEC\4 semestre\poo\Cine_Touch\src\main\java\br\com\fatec\model\Sala.java
+C:\Users\Fernanda\Desktop\FATEC\4 semestre\poo\Cine_Touch\src\main\java\br\com\fatec\controller\IniciarPedidoController.java
+C:\Users\Fernanda\Desktop\FATEC\4 semestre\poo\Cine_Touch\src\main\java\br\com\fatec\model\Poltrona.java
+C:\Users\Fernanda\Desktop\FATEC\4 semestre\poo\Cine_Touch\src\main\java\br\com\fatec\controller\TelaAdmController.java
+C:\Users\Fernanda\Desktop\FATEC\4 semestre\poo\Cine_Touch\src\main\java\br\com\fatec\controller\VisualizarFilmesController.java
+C:\Users\Fernanda\Desktop\FATEC\4 semestre\poo\Cine_Touch\src\main\java\br\com\fatec\persistencia\Banco.java
+C:\Users\Fernanda\Desktop\FATEC\4 semestre\poo\Cine_Touch\src\main\java\br\com\fatec\model\Administrador.java
+C:\Users\Fernanda\Desktop\FATEC\4 semestre\poo\Cine_Touch\src\main\java\br\com\fatec\model\Filme.java
+C:\Users\Fernanda\Desktop\FATEC\4 semestre\poo\Cine_Touch\src\main\java\br\com\fatec\DAO\DAO.java
+C:\Users\Fernanda\Desktop\FATEC\4 semestre\poo\Cine_Touch\src\main\java\br\com\fatec\model\Cliente.java
+>>>>>>> Stashed changes

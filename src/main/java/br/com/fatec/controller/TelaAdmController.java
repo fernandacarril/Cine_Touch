@@ -4,6 +4,7 @@
  */
 package br.com.fatec.controller;
 
+import br.com.fatec.model.Aperitivos;
 import br.com.fatec.model.Filme;
 import br.com.fatec.model.Sessoes;
 import java.io.IOException;
@@ -60,7 +61,7 @@ public class TelaAdmController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        lvMenu.getItems().addAll("Gerenciar Filmes", "Gerenciar Sessões");
+        lvMenu.getItems().addAll("Gerenciar Filmes", "Gerenciar Sessões", "Gerenciar Aperitivos");
 
         // Define o comportamento ao clicar nos itens da ListView
         lvMenu.setOnMouseClicked(event -> {
@@ -78,6 +79,12 @@ public class TelaAdmController implements Initializable {
                     } catch (IOException ex) {
                         mensagem("Erro:" + ex.getMessage());
                     }
+                } else if (selectedItem.equals("Gerenciar Aperitivos")){
+                   try {
+                        handleGerenciarAperitivos();
+                    } catch (IOException ex) {
+                        mensagem("Erro:" + ex.getMessage());
+                    } 
                 }
             }
         });
@@ -102,12 +109,12 @@ public class TelaAdmController implements Initializable {
         Sessoes s = new Sessoes();
         s.start(new Stage());
     }
+    private void handleGerenciarAperitivos() throws IOException{
+        Aperitivos a = new Aperitivos();
+        a.start(new Stage());
+    }
 
-    /*@FXML
-    private void lvMenu_onClick(MouseEvent event) throws IOException {
-        Sessoes s = new Sessoes();
-        s.start(new Stage());
-    }*/
+    
 
 }
     
