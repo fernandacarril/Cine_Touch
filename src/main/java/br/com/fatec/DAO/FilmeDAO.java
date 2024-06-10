@@ -113,8 +113,8 @@ public class FilmeDAO implements DAO<Filme> {
     public Filme buscaID(Filme model) throws SQLException {
         filme = null;
         //Comando SELECT
-        String sql = "SELECT * FROM filme WHERE nomeFilme = ?;";
-
+        String sql = "SELECT * FROM filme WHERE nomeFilme like ?";
+        
         //conecta ao banco
         Banco.conectar();
 
@@ -122,7 +122,8 @@ public class FilmeDAO implements DAO<Filme> {
         pst = Banco.obterConexao().prepareStatement(sql);
 
         //troca a ?
-        pst.setString(1, model.getNomeFilme());
+        pst.setString( 1,'%'+ model.getNomeFilme() +'%');
+        System.out.println("SQL: "+ pst);
 
         //Executa o comando SELECT
         rs = pst.executeQuery();
@@ -158,7 +159,7 @@ public class FilmeDAO implements DAO<Filme> {
         if (criterio.length() != 0) {
             sql += "WHERE " + criterio ;
         }
-        System.out.println("SQL: "+ sql);
+        
 
         //conecta ao banco
         Banco.conectar();
