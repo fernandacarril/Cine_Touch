@@ -12,6 +12,8 @@ import java.net.URL;
 import java.sql.SQLException;
 import javafx.fxml.FXML;
 import java.util.ResourceBundle;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -21,6 +23,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 /**
@@ -59,7 +62,9 @@ public class LoginAdmController implements Initializable {
 
     private String dadoPassado;
     @FXML
-    private PasswordField txtSenha;
+    private TextField txtSenha;
+    @FXML
+    private PasswordField pwSenha;
 
     public String getDadoPassado() {
         return dadoPassado;
@@ -81,15 +86,42 @@ public class LoginAdmController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+        txtUsuario.focusedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> observable, 
+                    Boolean oldValue, Boolean newValue) {
+                if(!newValue) {
+                    pwSenha.requestFocus();
+                }
+            }    
+        });
+        txtSenha.focusedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> observable, 
+                    Boolean oldValue, Boolean newValue) {
+                if(!newValue) {
+                    ckSenha.requestFocus();
+                }
+            }    
+        });
+        btnVoltar.focusedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> observable, 
+                    Boolean oldValue, Boolean newValue) {
+                if(!newValue) {
+                    txtUsuario.requestFocus();
+                }
+            }    
+        });
     }
+                
 
     @FXML
     private void btnConfirmar_Click(ActionEvent event) throws IOException {
         //pega o login no text e joga para um objeto
         //para ser pesquisado
         String login = txtUsuario.getText();
-        String senha = txtSenha.getText();
+        String senha = pwSenha.getText();
                 
         try {
             // Chama o método buscaPorLoginSenha da sua DAO para verificar as credenciais
@@ -129,6 +161,14 @@ public class LoginAdmController implements Initializable {
         Stage stage = (Stage) btnVoltar.getScene().getWindow();
         stage.close();
     }
+
+    @FXML
+    private void ckSenha_Change(ActionEvent event) {
+       
+       
+    
+    }
+
 
    
 }

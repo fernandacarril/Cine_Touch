@@ -17,6 +17,7 @@
         <URL value="@/br/com/fatec/css/loginadm.css" />
     </stylesheets>
    <children>
+      <TextField fx:id="txtSenha" layoutX="315.0" layoutY="232.0" prefHeight="38.0" prefWidth="255.0" />
       <ImageView fx:id="imgLogo" fitHeight="239.0" fitWidth="412.0" layoutX="8.0" layoutY="81.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@images/imgLogo.png" />
@@ -43,7 +44,7 @@
             <Font size="22.0" />
          </font>
       </Label>
-      <CheckBox fx:id="ckSenha" layoutX="316.0" layoutY="283.0" mnemonicParsing="false" text="Exibir Senha" />
+      <CheckBox fx:id="ckSenha" layoutX="316.0" layoutY="283.0" mnemonicParsing="false" onAction="#ckSenha_Change" text="Exibir Senha" />
       <Button fx:id="btnConfirmar" layoutX="316.0" layoutY="334.0" mnemonicParsing="false" onAction="#btnConfirmar_Click" prefHeight="38.0" prefWidth="115.0" text="Confirmar">
          <padding>
             <Insets bottom="10.0" top="10.0" />
@@ -54,6 +55,6 @@
             <Insets bottom="10.0" top="10.0" />
          </padding>
       </Button>
-      <PasswordField fx:id="txtSenha" layoutX="315.0" layoutY="232.0" prefHeight="38.0" prefWidth="255.0" />
+      <PasswordField fx:id="pwSenha" layoutX="315.0" layoutY="232.0" prefHeight="38.0" prefWidth="255.0" />
    </children>
 </AnchorPane>
