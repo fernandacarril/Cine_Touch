@@ -1,8 +1,10 @@
 br\com\fatec\controller\GerenciarSessaoController.class
 br\com\fatec\controller\TelaAdmController.class
 br\com\fatec\model\Poltrona.class
+br\com\fatec\controller\GerenciarSessaoController$1.class
 br\com\fatec\controller\LoginAdmController.class
 br\com\fatec\controller\IniciarPedidoController.class
+br\com\fatec\controller\GerenciarSessaoController$2.class
 br\com\fatec\model\Sala.class
 br\com\fatec\controller\GerenciarFilmeController$1.class
 br\com\fatec\model\Administrador.class

@@ -21,8 +21,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.ListCell;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+import javafx.util.StringConverter;
 
 /**
  * FXML Controller class
@@ -87,16 +90,45 @@ public class GerenciarSessaoController implements Initializable {
     }
 
     @FXML
+
     private void carregar_Combo() {
-        FilmeDAO Filmedao = new FilmeDAO();
-        try {            //busca todos os registros no banco para uma Coleção
-            Collection<Filme> listFilm = Filmedao.lista("");
-            //colocar a lista gerada pela DAO dentro da COMBO
+        FilmeDAO filmeDao = new FilmeDAO();
+        try {
+            Collection<Filme> listFilm = filmeDao.lista("");
+
+            // Limpa a ObservableList antes de adicionar novos itens
             listaFilme.clear();
             listaFilme.addAll(listFilm);
-            //informa que a combo possui uma lista
+
+            // Configura os itens da ComboBox
             cb_Filme.setItems(listaFilme);
-             
+
+            // Configura o StringConverter para exibir o ID
+            cb_Filme.setConverter(new StringConverter<Filme>() {
+                @Override
+                public String toString(Filme filme) {
+                    return filme == null ? "" : String.valueOf(filme.getIdFilme());
+                }
+
+                @Override
+                public Filme fromString(String string) {
+                    // Implementação necessária apenas se você quiser converter o texto de volta para um objeto Filme
+                    return null;
+                }
+            });
+
+            // Configura o CellFactory para exibir o ID
+            cb_Filme.setCellFactory(comboBox -> new ListCell<Filme>() {
+                @Override
+                protected void updateItem(Filme filme, boolean empty) {
+                    super.updateItem(filme, empty);
+                    if (empty || filme == null) {
+                        setText("");
+                    } else {
+                        setText(String.valueOf(filme.getIdFilme()));
+                    }
+                }
+            });
         } catch (SQLException ex) {
             mensagem(ex.getMessage());
         }
@@ -226,7 +258,7 @@ public class GerenciarSessaoController implements Initializable {
         try {
             if (incluindo) { // Se a operação geral é de inclusão
                 if (sessaoDAO.insere(sessao)) {
-                    mensagem("Filme incluído com sucesso!");
+                    mensagem("Sessao incluído com sucesso!");
                     cb_Filme.requestFocus();
                 } else {
                     mensagem("Erro na inclusão.");
@@ -250,6 +282,39 @@ public class GerenciarSessaoController implements Initializable {
 
     @FXML
     private void btn_excluir_Click(ActionEvent event) {
+        if (!validarDados()) {
+            mensagem("Por favor, preencha todos os campos.");
+            return; // Sai do método
+        }
+        
+        filme = new Filme();
+        //filme.setIdFilme(Integer.parseInt(cbId.getValue()));
+        filme.setIdFilme(cb_Filme.getValue().getIdFilme());
+        
+        sessao = carregar_Model_Sessao(); // Carrega o modelo de sessão
+
+        System.out.println("teste   ");
+
+        try {
+            if (incluindo) { // Se a operação geral é de inclusão
+                if (sessaoDAO.remove(sessao)) {
+                    mensagem("Sessao excluido com sucesso!");
+                    cb_Filme.requestFocus();
+                } else {
+                    mensagem("Erro na inclusão.");
+                }
+            } else { // Alterando
+                mensagem("Filme algum erro para exclusão");
+
+            }
+        } catch (SQLException ex) {
+            mensagem("Erro na operação: " + ex.getMessage());
+        }
+
+        // Tudo certo, vamos incluir um novo filme
+        limparCampos();
+        habilitarInclusao(true);
+
     }
 
     @FXML
@@ -258,6 +323,8 @@ public class GerenciarSessaoController implements Initializable {
 
     @FXML
     private void btn_voltar_Click(ActionEvent event) {
+    Stage stage = (Stage) btn_voltar.getScene().getWindow();
+        stage.close();
     }
 
     @FXML
