@@ -286,27 +286,24 @@ public class GerenciarSessaoController implements Initializable {
             mensagem("Por favor, preencha todos os campos.");
             return; // Sai do método
         }
-        
+
         filme = new Filme();
         //filme.setIdFilme(Integer.parseInt(cbId.getValue()));
         filme.setIdFilme(cb_Filme.getValue().getIdFilme());
-        
+
         sessao = carregar_Model_Sessao(); // Carrega o modelo de sessão
 
         System.out.println("teste   ");
 
         try {
-            if (incluindo) { // Se a operação geral é de inclusão
-                if (sessaoDAO.remove(sessao)) {
-                    mensagem("Sessao excluido com sucesso!");
-                    cb_Filme.requestFocus();
-                } else {
-                    mensagem("Erro na inclusão.");
-                }
-            } else { // Alterando
+            // Se a operação geral é de exc
+            if (sessaoDAO.remove(sessao)) {
+                mensagem("Sessao excluido com sucesso!");
+                cb_Filme.requestFocus();
+            } else {
                 mensagem("Filme algum erro para exclusão");
-
             }
+
         } catch (SQLException ex) {
             mensagem("Erro na operação: " + ex.getMessage());
         }
@@ -323,12 +320,33 @@ public class GerenciarSessaoController implements Initializable {
 
     @FXML
     private void btn_voltar_Click(ActionEvent event) {
-    Stage stage = (Stage) btn_voltar.getScene().getWindow();
+        Stage stage = (Stage) btn_voltar.getScene().getWindow();
         stage.close();
     }
 
     @FXML
-    private void btn_Pesquisa_Click(ActionEvent event) {
+    private void btn_Pesquisa_Click(ActionEvent event) throws SQLException {
+        sessao = new Sessoes();
+        //filme.setIdFilme(Integer.parseInt(cbId.getValue()));
+        sessao.setIdSessao(Integer.parseInt(txt_SessaoId.getText()));
+
+        try {
+            //faz a procura
+            sessao = sessaoDAO.buscaID(sessao);
+            if (sessao != null) { //achou
+                carregar_View(sessao);
+                incluindo = false;
+                habilitarInclusao(false);
+            } else {
+                mensagem("Filme não encontrado");
+                //envia o foco para o text da placa
+                txt_SessaoId.requestFocus();
+                incluindo = true;
+            }
+        } catch (SQLException ex) {
+            mensagem("Erro na procura do Filme: "
+                    + ex.getMessage());
+        }
     }
 
     @FXML

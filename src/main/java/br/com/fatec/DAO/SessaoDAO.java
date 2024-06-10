@@ -139,6 +139,7 @@ public class SessaoDAO implements DAO<Sessoes> {
             filme.setIdFilme(rs.getInt("idFilme"));
             // Aqui você configura outras propriedades do objeto Filme se necessário
             sessoes.setFilme(filme);
+            
 
             // Configura as outras propriedades de sessoes
             sessoes.setDataI(rs.getString("dataInicio"));
